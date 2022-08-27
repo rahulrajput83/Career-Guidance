@@ -1,3 +1,4 @@
+/* Data for Registration */
 export const Data = [
     {
         title: 'Full Name',

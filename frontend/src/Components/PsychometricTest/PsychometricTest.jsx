@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Step1 } from './Data';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa'
 
-function CareerTest() {
+function PsychometricTest() {
     const [value, setValue] = useState('')
     const [invalid, setInvalid] = useState(false)
 
@@ -62,4 +62,4 @@ function CareerTest() {
     )
 }
 
-export default CareerTest;
+export default PsychometricTest;

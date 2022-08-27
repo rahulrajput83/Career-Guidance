@@ -3,7 +3,7 @@ import React from 'react';
 import Register from './Components/Register.js/Register';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import NavbarComponent from './Components/Navbar/Navbar';
-import CareerTest from './Components/CareerTest/CareerTest';
+import PsychometricTest from './Components/PsychometricTest/PsychometricTest';
 
 
 function App() {
@@ -15,8 +15,8 @@ function App() {
     <Routes>
       {/* Registration Route */}
       <Route path='/register' element={<Register />} />
-      {/*  */}
-      <Route path='/career-test' element={<CareerTest />} />
+      {/* Psychometric Test Route */}
+      <Route path='/psychometric-test' element={<PsychometricTest />} />
     </Routes>
     </BrowserRouter>
   );
