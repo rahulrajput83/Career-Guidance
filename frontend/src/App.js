@@ -1,10 +1,17 @@
-import './App.css';
+import React from 'react';
+import Register from './Components/Register.js/Register';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import NavbarComponent from './Components/Navbar/Navbar';
+
 
 function App() {
   return (
-    <div className="mt-4 bg-danger">
-    <h1>No error from Afreen Side</h1>
-    </div>
+    <BrowserRouter>
+    <NavbarComponent />
+    <Routes>
+      <Route path='/register' element={<Register />} />
+    </Routes>
+    </BrowserRouter>
   );
 }
 
