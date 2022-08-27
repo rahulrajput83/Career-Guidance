@@ -22,16 +22,12 @@ const Data = [
     {
         name: 'Register',
         link: '/register'
-    },
-    {
-        name: 'Post Question',
-        link: '/questions'
     }
 ]
 
 /* NavbarComponent function */
 function NavbarComponent() {
-    const user = 'H'
+    const user = ''
     return (
         /* Navbar imported from Bootstrap */
         <Navbar bg="primary" expand="md">
@@ -46,9 +42,9 @@ function NavbarComponent() {
                     <Nav className="w-100 d-flex justify-content-end">
                         {/* Mapfunction in Data for navbar items. */}
                         {
-                            Data.map((data) => {
+                            Data.map((data, index) => {
                                 return (
-                                    <>
+                                    <div key={index}>
                                         {/* Conditional Rendering.  */}
                                         {(data.name === 'Login' && user !== '') || (data.name === 'Register' && user !== '')
                                             ? null
@@ -56,7 +52,7 @@ function NavbarComponent() {
                                             <Link className='mx-md-4 text-decoration-none text-white' to={data.link}>
                                                 {data.name}
                                             </Link>}
-                                    </>
+                                    </div>
                                 )
                             })
                         }
