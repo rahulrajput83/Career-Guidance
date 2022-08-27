@@ -1,6 +1,6 @@
 /* Imports */
 import React from 'react';
-import Register from './Components/Register.js/Register';
+import Register from './Components/Register/Register';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import NavbarComponent from './Components/Navbar/Navbar';
 import PsychometricTest from './Components/PsychometricTest/PsychometricTest';
