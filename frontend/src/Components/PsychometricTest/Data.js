@@ -1,5 +1,6 @@
 export const Step1 = [
     {
+        title: 'Where are you now ?',
         Question: [
             {
                 title: 'School',
@@ -50,55 +51,109 @@ export const Step1 = [
                 ]
             }
         ]
-    },
+    }
+]
+
+export const Step2 = [
     {
+        title: 'What do you love learning ?',
         Question: [
             {
-                title: 'School',
+                title: ' ',
                 value: [
                     {
-                        title: 'Class 7'
+                        title: 'Accountancy'
                     },
                     {
-                        title: 'Class 8'
+                        title: 'Arithmetic'
                     },
                     {
-                        title: 'Class 9'
+                        title: 'Art'
                     },
                     {
-                        title: 'Class 10'
+                        title: 'Biology'
                     },
                     {
-                        title: 'Class 11'
+                        title: 'Chemistry'
                     },
                     {
-                        title: 'Class 12'
-                    }
-                ]
-            },
-            {
-                title: 'Higher Education',
-                value: [
-                    {
-                        title: "Bachelor's"
+                        title: 'Civics'
                     },
                     {
-                        title: "Master's"
+                        title: 'Commerce'
                     },
                     {
-                        title: "Doctoral"
-                    }
-                ]
-            },
-            {
-                title: 'Working',
-                value: [
-                    {
-                        title: "Professional"
+                        title: 'Computer Science'
                     },
                     {
-                        title: "Enterpreneur"
-                    }
+                        title: 'Cooking/Baking'
+                    },
+                    {
+                        title: 'Dance'
+                    },
+                    {
+                        title: 'Design'
+                    },
+                    {
+                        title: 'English Literature & Language'
+                    },
+                    {
+                        title: 'Environmental Science'
+                    },
+                    {
+                        title: 'Fashion Studies'
+                    },
+                    {
+                        title: 'General Knowledge'
+                    },
+                    {
+                        title: 'Geography'
+                    },
+                    {
+                        title: 'History'
+                    },
+                    {
+                        title: 'Home Science'
+                    },
+                    {
+                        title: 'Information Pratices'
+                    },
+                    {
+                        title: 'Legal Studies'
+                    },
+                    {
+                        title: 'Mass Communication'
+                    },
+                    {
+                        title: 'Maths'
+                    },
+                    {
+                        title: 'Music'
+                    },
+                    {
+                        title: 'Other Languages (Indian & Foreign)'
+                    },
+                    {
+                        title: 'Physical Education'
+                    },
+                    {
+                        title: 'Physics'
+                    },
+                    {
+                        title: 'Political Science'
+                    },
+                    {
+                        title: 'Psychology'
+                    },
+                    {
+                        title: 'Sociology'
+                    },
+                    {
+                        title: 'Sports'
+                    },
+                    {
+                        title: 'Web Technology'
+                    },
                 ]
             }
         ]

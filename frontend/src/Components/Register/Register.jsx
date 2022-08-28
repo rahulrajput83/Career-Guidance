@@ -1,9 +1,12 @@
-import React from 'react';
-import { useState } from 'react';
+/* Imports */
+import React, {useState} from 'react';
 import { Data } from './Data';
 import signinImg from '../../Images/Signup.svg'
 
+/* Register Functional Component */
 function Register() {
+
+    /* registration state used to store data from input fields. */
     const [registration, setRegistration] = useState({
         name: '',
         email: '',
@@ -11,16 +14,22 @@ function Register() {
         password: '',
         reenter: ''
     });
-    const [invalid, setInvalid] = useState(false)
 
+    /* Invalid state used to show message when user enter invalid data. */
+    const [invalid, setInvalid] = useState(false)
+    /* Invalid Mesaage state used to show message when user enter invalid data. */
+    const [invalidMessage, setInvalidMessage] = useState('Invalid, please check fields.')
+
+    /* handleChange function triggered when input field data is changed. */
     const handleChange = (e) => {
         setInvalid(false);
         setRegistration({ ...registration, [e.target.name]: e.target.value })
     }
 
+    /* handleSubmit function triggered when user submit the data to register. */
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        /* Conditions to validate form data. */
         if (registration.mobile.length !== 10 || registration.password.length < 6 || registration.password !== registration.reenter) {
             setInvalid(true)
         }
@@ -35,14 +44,17 @@ function Register() {
             })
         }
     }
+
     return (
         <div className='w-100 d-flex flex-column flex-md-row p-3 justify-content-center justify-content-md-end' style={{ 
             background: `url(${signinImg}) no-repeat left center`, backgroundSize: 'contain' 
           }}>
             <div className='col bg-white col-md-4 d-flex flex-column align-items-center py-2 justify-content-center shadow rounded'>
                 <h5 className='fs-6'>Register</h5>
+                {/* Form */}
                 <form className='w-100 px-4 mt-2' onSubmit={handleSubmit}>
                     {
+                        /* Map function on Data to render multiple input fields. */
                         Data.map((item, index) => {
                             return (
                                 <div key={index} className='w-100 small mb-3'>
@@ -52,7 +64,10 @@ function Register() {
                             )
                         })
                     }
-                    {invalid ? <span className='text-danger small'>Invalid, please check fields.<br /></span> : null}
+                    {/* Invalid Message */}
+                    {invalid ? <span className='text-danger small'>{invalidMessage}<br /></span> : null}
+
+                    {/* Button to Submit Form data. */}
                     <button type="submit" className="btn btn-sm py-2 px-4 w-auto my-2 btn-primary">Submit</button>
                 </form>
             </div>
@@ -60,4 +75,5 @@ function Register() {
     )
 }
 
+/* Export Register Component */
 export default Register;
