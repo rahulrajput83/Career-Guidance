@@ -34,7 +34,7 @@ function NavbarComponent() {
             {/* Container imported from Bootstrap */}
             <Container>
                 {/* Navbar.Brand imported from Bootstrap shown to left side. */}
-                <Navbar.Brand href="/" className='text-white'>Career Guidance</Navbar.Brand>
+                <Navbar.Brand><Link to='/' className='text-white text-decoration-none'>Career Guidance</Link></Navbar.Brand>
                 {/* Navbar.Toggle imported from Bootstrap shown in small screen to open menu. */}
                 <Navbar.Toggle aria-controls="basic-navbar-nav" className='fs-6 bg-white shadow-none py-1 px-2' />
                 {/* Navbar Items. */}
