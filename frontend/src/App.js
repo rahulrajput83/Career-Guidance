@@ -5,6 +5,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import NavbarComponent from './Components/Navbar/Navbar';
 import PsychometricTest from './Components/PsychometricTest/PsychometricTest';
 import Login from './Components/Login/Login';
+import Home from './Components/Home/Home';
 
 
 function App() {
@@ -20,6 +21,8 @@ function App() {
       <Route path='/psychometric-test' element={<PsychometricTest />} />
       {/* Login Route */}
       <Route path='/login' element={<Login />} />
+      {/* Home Route */}
+      <Route path='/' element={<Home />} />
     </Routes>
     </BrowserRouter>
   );

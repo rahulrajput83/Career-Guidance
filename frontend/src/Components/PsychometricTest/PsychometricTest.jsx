@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Step1 } from './Data';
 import { Step2 } from './Data';
+import { Step3 } from './Data';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa'
 import { useEffect } from 'react';
 
@@ -10,7 +11,8 @@ function PsychometricTest() {
     const [invalid, setInvalid] = useState(false);
     const [test, setTest] = useState({
         education: '',
-        interestSubject: ''
+        interestSubject: '',
+        hobby: ''
     })
     const [stepNumber, setStepNumber] = useState(1);
     const [data, setData] = useState(Step1)
@@ -25,10 +27,14 @@ function PsychometricTest() {
             setValue(title)
             setTest({...test, interestSubject: title})
         }
+        else if(stepNumber === 3){
+            setValue(title)
+            setTest({...test, hobby: title})
+        }
     }
     const stepForward = () => {
         if(value !== '') {
-            if(stepNumber < 2) {
+            if(stepNumber < 3) {
                 setStepNumber(stepNumber + 1);
                 setValue('')
             }
@@ -48,12 +54,15 @@ function PsychometricTest() {
         if(stepNumber === 1) {
             setData(Step1)
         }
-        else if(stepNumber ===2) {
+        else if(stepNumber === 2) {
             setData(Step2)
+        }
+        else if(stepNumber === 3) {
+            setData(Step3)
         }
     }, [stepNumber])
 
-
+    console.log(test)
     return (
         <div className='w-100 d-flex flex-column flex-md-row p-3 justify-content-center'>
             <div className='col bg-white px-4 col-md-7 d-flex flex-column py-4 justify-content-start shadow rounded'>
