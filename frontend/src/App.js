@@ -6,9 +6,12 @@ import NavbarComponent from './Components/Navbar/Navbar';
 import PsychometricTest from './Components/PsychometricTest/PsychometricTest';
 import Login from './Components/Login/Login';
 import Home from './Components/Home/Home';
+import QnA from './Components/QnA/QnA';
+import Footer from './Components/Footer/Footer';
 
 
 function App() {
+
   return (
     /* Router */
     <BrowserRouter>
@@ -23,7 +26,11 @@ function App() {
       <Route path='/login' element={<Login />} />
       {/* Home Route */}
       <Route path='/' element={<Home />} />
+      {/* Question and Answer Route */}
+      <Route path='/qna' element={<QnA />} />
     </Routes>
+    {/* Renders Footer Component */}
+    <Footer />
     </BrowserRouter>
   );
 }

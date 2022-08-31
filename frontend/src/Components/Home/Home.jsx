@@ -28,7 +28,7 @@ function Home() {
             </div>
             {/* Heading 3 */}
             <h3 className='text-center text-white'>Career Counselling</h3>
-            <div className='w-full d-flex flex-column flex-md-row justify-content-center'>
+            <div className='w-full d-flex mb-5 flex-column flex-md-row justify-content-center'>
                 {/* Renders Card Component with head & content. */}
                 <Card head='Know Yourself' content='Explore your aptitudes and interests through our test.' />
                 {/* Renders Card Component with head & content. */}

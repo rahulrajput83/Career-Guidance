@@ -4,12 +4,25 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
+import {useSelector} from 'react-redux'
 
 /* Navbar Menu Items */
 const Data = [
     {
         name: 'Home',
         link: '/'
+    },
+    {
+        name: 'Dashboard',
+        link: '/dashboard'
+    },
+    {
+        name: 'Plans',
+        link: '/plans'
+    },
+    {
+        name: 'QnA',
+        link: '/qna'
     },
     {
         name: 'About',
@@ -22,12 +35,16 @@ const Data = [
     {
         name: 'Register',
         link: '/register'
+    },
+    {
+        name: 'Account',
+        link: '/account'
     }
 ]
 
 /* NavbarComponent function */
 function NavbarComponent() {
-    const user = ''
+    const user = useSelector((state) => state.userData).id;
     return (
         /* Navbar imported from Bootstrap */
         <Navbar bg="primary" expand="md">
@@ -46,7 +63,7 @@ function NavbarComponent() {
                                 return (
                                     <div key={index}>
                                         {/* Conditional Rendering.  */}
-                                        {(data.name === 'Login' && user !== '') || (data.name === 'Register' && user !== '')
+                                        {(data.name === 'Login' && user !== '') || (data.name === 'Register' && user !== '') || (data.name === 'Dashboard' && user === '') || (data.name === 'QnA' && user === '') || (data.name === 'Account' && user === '')
                                             ? null
                                             :
                                             <Link className='mx-md-4 text-decoration-none text-white' to={data.link}>
