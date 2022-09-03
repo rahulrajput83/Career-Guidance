@@ -8,6 +8,8 @@ import Login from './Components/Login/Login';
 import Home from './Components/Home/Home';
 import QnA from './Components/QnA/QnA';
 import Footer from './Components/Footer/Footer';
+import Answer from './Components/Answer/Answer';
+import Account from './Components/Account.jsx/Account';
 
 
 function App() {
@@ -28,6 +30,10 @@ function App() {
       <Route path='/' element={<Home />} />
       {/* Question and Answer Route */}
       <Route path='/qna' element={<QnA />} />
+      {/* Answers Page Route */}
+      <Route path='/answer/:questionId' element={<Answer />} />
+      {/* Account Route */}
+      <Route path='/account' element={<Account />} />
     </Routes>
     {/* Renders Footer Component */}
     <Footer />

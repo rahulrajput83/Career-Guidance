@@ -27,7 +27,8 @@ function Login() {
         e.preventDefault();
         /* Conditions to validate form data. */
         if (login.password.length < 6) {
-            setInvalid(true)
+            setInvalid(true);
+            setInvalidMessage('Please enter correct password.')
         }
         else {
             console.log(login)

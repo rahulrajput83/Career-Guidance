@@ -31,7 +31,8 @@ function Register() {
         e.preventDefault();
         /* Conditions to validate form data. */
         if (registration.mobile.length !== 10 || registration.password.length < 6 || registration.password !== registration.reenter) {
-            setInvalid(true)
+            setInvalid(true);
+            setInvalidMessage('Invalid, please check fields.')
         }
         else {
             console.log(registration)

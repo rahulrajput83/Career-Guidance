@@ -11,16 +11,19 @@ function Footer() {
                 </Link>
             </div>
             <div className='col col-md-4 d-flex mt-2 flex-column ms-2 ms-md-0'>
-                <div className='small'>
+                <div className='small fw-bold'>
                     Copyright ©️ Career Guidance
                 </div>
                 <div className='mt-2 d-flex flex-column'>
                 <CopyrightLink link='https://www.linkedin.com/in/rahulrajput83/' name='Rahul Rajput' />
                 <CopyrightLink link='https://www.linkedin.com/in/rahulrajput83/' name='Afreen Ansari' />
+                <CopyrightLink link='https://www.linkedin.com/in/rahulrajput83/' name='Anirudh' />
+                <CopyrightLink link='https://www.linkedin.com/in/rahulrajput83/' name='Achintya' />
                 </div>
             </div>
         </div>
     )
 }
+
 
 export default Footer
