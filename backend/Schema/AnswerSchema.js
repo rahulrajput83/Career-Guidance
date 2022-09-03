@@ -9,6 +9,7 @@ const AnswerSchema = new mongoose.Schema({
     questionId: String,
 });
 
+
 const AnswerModel = mongoose.model('Answers', AnswerSchema);
 
 module.exports = AnswerModel;

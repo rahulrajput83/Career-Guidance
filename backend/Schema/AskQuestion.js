@@ -8,6 +8,7 @@ const AskQuestionSchema = new mongoose.Schema({
     question: String
 });
 
+
 const AskQuestionModel = mongoose.model('Questions', AskQuestionSchema);
 
 module.exports = AskQuestionModel;

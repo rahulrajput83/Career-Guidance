@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const AskQuestionModel = require('../Schema/AskQuestion')
 
+
 router.get('/getask', (req, res) => {
     AskQuestionModel.find({})
         .then(data => {
