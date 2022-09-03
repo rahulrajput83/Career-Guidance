@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import profile from '../../Images/profile1.png'
 import { Link } from 'react-router-dom';
 import Post from './Post';
 
