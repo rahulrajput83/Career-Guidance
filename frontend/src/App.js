@@ -10,6 +10,7 @@ import QnA from './Components/QnA/QnA';
 import Footer from './Components/Footer/Footer';
 import Answer from './Components/Answer/Answer';
 import Account from './Components/Account/Account';
+import Dashboard from './Components/Dashboard/Dashboard';
 
 
 function App() {
@@ -34,6 +35,8 @@ function App() {
       <Route path='/answer/:questionId' element={<Answer />} />
       {/* Account Route */}
       <Route path='/account' element={<Account />} />
+       {/* Dashboard Route */}
+       <Route path='/dashboard' element={<Dashboard />} />
     </Routes>
     {/* Renders Footer Component */}
     <Footer />

@@ -30,11 +30,11 @@ function Home() {
             <h3 className='text-center text-white'>Career Counselling</h3>
             <div className='w-full d-flex mb-5 flex-column flex-md-row justify-content-center'>
                 {/* Renders Card Component with head & content. */}
-                <Card head='Know Yourself' content='Explore your aptitudes and interests through our test.' />
+                <Card head='Know Yourself' content='Explore your aptitudes and interests through our test.' link='/login' />
                 {/* Renders Card Component with head & content. */}
-                <Card head='Inform Yourself' content='The right information at the right time will get you to the right opportunity.' />
+                <Card head='Inform Yourself' content='The right information at the right time will get you to the right opportunity.' link='/login' />
                 {/* Renders Card Component with head & content. */}
-                <Card head='Plan for Yourself' content='Expert guidance helps you make the most of your opportunities and succeed. Talk to our counsellors.' />
+                <Card head='Plan for Yourself' content='Expert guidance helps you make the most of your opportunities and succeed. Talk to our counsellors.' link='/login' />
             </div>
         </div>
     )
