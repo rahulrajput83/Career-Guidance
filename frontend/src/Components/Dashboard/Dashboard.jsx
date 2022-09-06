@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 
 export default function Dashboard()
 { 
-  let CurrentNew=[ ];
+  let CurrentNew=[];
   
     
       fetch('https://newsapi.org/v2/everything?q=apple&from=2022-09-04&to=2022-09-04&sortBy=popularity&apiKey=9904b4a740bf476383cc75a848f17e0d')
@@ -17,7 +17,7 @@ export default function Dashboard()
           const {title,url,urlToImage,description, ...rest}=y.articles[i];
           CurrentNew[i]={title,url,urlToImage,description}
         }
-        console.log(CurrentNew)
+        //console.log(CurrentNew)
      });
     
     
@@ -46,26 +46,19 @@ export default function Dashboard()
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
   <div className="carousel-inner">
-   { <div className="carousel-item active">
-      <img src={slideOne} className="d-block w-100" alt="..."/>
+  <div className="carousel-item active">
+   { CurrentNew.map((newstext)=>{
+    return (
+      <div>
+      <img src={newstext.urlToImage} className="d-block w-100" alt="..."/>
       <div className="carousel-caption d-none d-md-block">
-        <h5>First slide one</h5>
-        <p>Some representative placeholder content for the first slide.</p>
-      </div>
-    </div>}
-    <div className="carousel-item">
-      <img src={slideTwo} className="d-block w-100" alt="..."/>
-      <div className="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p>Some representative placeholder content for the second slide.</p>
+        <h5>{newstext.title}</h5>
+        <p>{newstext.description}.</p>
       </div>
     </div>
-    <div className="carousel-item">
-      <img src={slideOne} className="d-block w-100" alt="..."/>
-      <div className="carousel-caption d-none d-md-block">
-        <h5>Third slide label</h5>
-        <p>Some representative placeholder content for the third slide.</p>
-      </div>
+    )
+   })}
+    
     </div>
   </div>
   <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
