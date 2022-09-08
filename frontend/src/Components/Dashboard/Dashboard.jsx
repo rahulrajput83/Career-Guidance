@@ -1,26 +1,37 @@
 import Card from '../Home/Card';
-import slideOne from '../../Images/poster.png'
-import slideTwo from '../../Images/profile1.png'
+import axios, * as others from 'axios';
+import { useState } from 'react';
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useEffect } from 'react';
+
 
 
 export default function Dashboard()
 { 
-  let CurrentNew=[];
+  const [newsData, setNewsData]=useState([]);
+  const [value, setValue]=useState(false);
   
-    
-      fetch('https://newsapi.org/v2/everything?q=apple&from=2022-09-04&to=2022-09-04&sortBy=popularity&apiKey=9904b4a740bf476383cc75a848f17e0d')
-     .then(x => x.json())
-     .then(y => {
-         for(let i=0;i<3;i++)
+  
+     useEffect(()=>
+    {
+      axios.get('https://newsapi.org/v2/top-headlines?country=us&apiKey=9904b4a740bf476383cc75a848f17e0d')
+      .then((response)=>
+      {
+        setNewsData((pre)=>
         {
-          const {title,url,urlToImage,description, ...rest}=y.articles[i];
-          CurrentNew[i]={title,url,urlToImage,description}
-        }
-        //console.log(CurrentNew)
-     });
-    
-    
+          return [...pre , response.data.articles[0], response.data.articles[1], response.data.articles[2]]
+        })
+        console.log(response.data.articles);
+        setValue(true);
+      });
+      
+    },[])
+   // console.log(newsData);
+  
+  
+     
+   
     return (
         <div className="bg-primary">
           {/*search bar*/}
@@ -39,38 +50,24 @@ export default function Dashboard()
 
           {/*Latest News */}
 
-          <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="false">
-  <div className="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div className="carousel-inner">
-  <div className="carousel-item active">
-   { CurrentNew.map((newstext)=>{
-    return (
-      <div>
-      <img src={newstext.urlToImage} className="d-block w-100" alt="..."/>
-      <div className="carousel-caption d-none d-md-block">
-        <h5>{newstext.title}</h5>
-        <p>{newstext.description}.</p>
-      </div>
-    </div>
-    )
-   })}
-    
-    </div>
-  </div>
-  <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Previous</span>
-  </button>
-  <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Next</span>
-  </button>
-</div>
- {/*It does not slides */}
+        {  value?<Carousel infiniteLoop useKeyboardArrows autoPlay>
+                <div>
+                    <img src={newsData[0].urlToImage}/>
+                    <h4>{newsData[0].title}</h4>
+                    <p className="legend">{newsData[0].description}</p>
+                </div>
+                <div>
+                    <img src={newsData[1].urlToImage}/>
+                    <h4>{newsData[1].title}</h4>
+                    <p className="legend">{newsData[1].description}</p>
+                </div>
+                <div>
+                    <img src={newsData[2].urlToImage}/>
+                    <h4>{newsData[2].title}</h4>
+                    <p className="legend">{newsData[2].description}</p>
+                </div>
+                
+            </Carousel>:null}
 
 
  {/*Career Path */}
