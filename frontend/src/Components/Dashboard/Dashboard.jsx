@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useEffect } from 'react';
-import data from './mock_data.json';
+import data from './mock_data.json';//list of career 
 
 
 
@@ -92,8 +92,15 @@ export default function Dashboard()
 
 
  {/*Career Path */}
+            <div className='container'>
+              <Carousel>
+                <div>
+                 
+                </div>
+              </Carousel>
 
-
+            </div>
+            
              <div className='w-full d-flex mb-5 flex-column flex-md-row justify-content-center'>
                 {/* Renders Card Component with head & content. */}
                 <Card head='Know Yourself' content='Explore your aptitudes and interests through our test.' link='/psychometric-test' />
