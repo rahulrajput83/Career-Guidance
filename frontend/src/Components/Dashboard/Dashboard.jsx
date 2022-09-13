@@ -4,15 +4,18 @@ import { useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useEffect } from 'react';
+import data from './mock_data.json';//list of career 
 
 
 
 export default function Dashboard()
 { 
-  const [newsData, setNewsData]=useState([]);
+  const [newsData, setNewsData]=useState([]);//collect news json data
   const [value, setValue]=useState(false);
+  const [list, setList]=useState(false);//onfucus on search bar will show all the list of career
+  const [query, setQuery]=useState("");//store the value of input
   
-  
+  //useEffect is used to call Api as soon as the page load
      useEffect(()=>
     {
       axios.get('https://newsapi.org/v2/top-headlines?country=us&apiKey=9904b4a740bf476383cc75a848f17e0d')
@@ -39,10 +42,28 @@ export default function Dashboard()
           <div className="input-group mb-3 column align-row-center mx-auto w-50" >
   <span className="input-group-text">Search</span>
   <div className="form-floating">
-    <input type="text" className="form-control" id="floatingInputGroup1" placeholder="career path"/>
+    <input type="text" className="form-control" onChange={(event)=>{setQuery(event.target.value)}} onFocus={()=>{setList(true)}} id="floatingInputGroup1" placeholder="career path"/>
     <label htmlFor="floatingInputGroup1">Career Path</label>
   </div>
           </div>
+          {list?<div>
+           <ul className='list-group'>
+              {data.filter((post)=>{//use ti filter out the career
+                    if(query==='')
+                    {
+                      return post;
+                    }
+                    else if(post.career.toLowerCase().includes(query.toLowerCase()))
+                    {
+                      return post;
+                    }
+              }).map((display)=>{
+                return <div key={display.id}>
+                  <li className="list-group-item">{display.career}</li>
+                </div>
+              })}
+           </ul>
+          </div>:null}
 
 
 
@@ -71,8 +92,15 @@ export default function Dashboard()
 
 
  {/*Career Path */}
+            <div className='container'>
+              <Carousel>
+                <div>
+                 
+                </div>
+              </Carousel>
 
-
+            </div>
+            
              <div className='w-full d-flex mb-5 flex-column flex-md-row justify-content-center'>
                 {/* Renders Card Component with head & content. */}
                 <Card head='Know Yourself' content='Explore your aptitudes and interests through our test.' link='/psychometric-test' />
