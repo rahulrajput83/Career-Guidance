@@ -8,7 +8,7 @@ function RecentQuestions() {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:2800/getask', {
+        fetch('https://career-guidance-backend.vercel.app/getask', {
             method: 'GET'
         })
             .then(response => response.json())

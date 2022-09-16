@@ -1,5 +1,6 @@
 /* Imports */
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import poster from '../../Images/poster.png'
 import Card from './Card';
@@ -7,6 +8,9 @@ import Label from './Label';
 
 /* Home Component */
 function Home() {
+    /* Gets data from redux */
+    const userEmail = useSelector((state) => state.userData).email;
+
     return (
         <div className='w-full d-flex flex-column bg-primary'>
             <div className='d-flex flex-column-reverse flex-md-row justify-content-evenly py-5 w-100'>
@@ -17,7 +21,7 @@ function Home() {
                     {/* Renders Label Component with title. */}
                     <Label title='Career Counselling Online' />
                     {/* Login button */}
-                    <Link to='/login' className='mt-2 py-2 px-4 border border-2 border-white text-decoration-none rounded text-white fw-800'>Login</Link>
+                    {!userEmail ? <Link to='/login' className='mt-2 py-2 px-4 border border-2 border-white text-decoration-none rounded text-white fw-800'>Login</Link> : null}
                     {/* Renders Label Component with title. */}
                     <Label title='Now, experience the benefits of career counselling free of all hassles from the comfort of your home !' />
                 </div>
@@ -30,7 +34,7 @@ function Home() {
             <h3 className='text-center text-white'>Career Counselling</h3>
             <div className='w-full d-flex mb-5 flex-column flex-md-row justify-content-center'>
                 {/* Renders Card Component with head & content. */}
-                <Card head='Know Yourself' content='Explore your aptitudes and interests through our test.' link='/login' />
+                <Card head='Know Yourself' content='Explore your aptitudes and interests through our test.' link={userEmail ? '/psychometric-test' : '/login'} />
                 {/* Renders Card Component with head & content. */}
                 <Card head='Inform Yourself' content='The right information at the right time will get you to the right opportunity.' link='/login' />
                 {/* Renders Card Component with head & content. */}

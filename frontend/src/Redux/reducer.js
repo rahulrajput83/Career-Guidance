@@ -1,8 +1,9 @@
 export default function reducer(state = {
     userData: {
-        id: 'jdgdfiugf',
-        Name: 'Rahul Rajput',
-        email: 'email@gmail.com'
+        id: '',
+        Name: '',
+        email: '',
+        careerField: ''
     }
 }, action) {
     switch (action.type) {
@@ -20,7 +21,7 @@ export default function reducer(state = {
                     email: ''
                 }
             };
-            default:
-                return state;
+        default:
+            return state;
     }
 }

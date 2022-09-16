@@ -32,7 +32,7 @@ function Answer() {
             setInvalid('border-danger')
         }
         else {
-            fetch('http://localhost:2800/postanswer', {
+            fetch('https://career-guidance-backend.vercel.app/postanswer', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -58,7 +58,7 @@ function Answer() {
     }
 
     const loadAnswer = useCallback(() => {
-        fetch('http://localhost:2800/getanswer', {
+        fetch('https://career-guidance-backend.vercel.app/getanswer', {
             method: 'GET'
         })
             .then(response => response.json())
@@ -74,7 +74,7 @@ function Answer() {
             .catch((err) => {
                 console.log('err')
             })
-        fetch('http://localhost:2800/getask', {
+        fetch('https://career-guidance-backend.vercel.app/getask', {
             method: 'GET'
         })
             .then(response => response.json())

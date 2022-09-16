@@ -44,7 +44,8 @@ const Data = [
 
 /* NavbarComponent function */
 function NavbarComponent() {
-    const user = useSelector((state) => state.userData).id;
+    /* GEts data from redux */
+    const user = useSelector((state) => state.userData).email;
     return (
         /* Navbar imported from Bootstrap */
         <Navbar bg="primary" expand="md">
@@ -63,7 +64,7 @@ function NavbarComponent() {
                                 return (
                                     <div key={index}>
                                         {/* Conditional Rendering.  */}
-                                        {(data.name === 'Login' && user !== '') || (data.name === 'Register' && user !== '') || (data.name === 'Dashboard' && user === '') || (data.name === 'QnA' && user === '') || (data.name === 'Account' && user === '')
+                                        {(data.name === 'Login' && user !== '') || (data.name === 'Register' && user !== '') || (data.name === 'Dashboard' && user === '') || (data.name === 'Account' && user === '')
                                             ? null
                                             :
                                             <Link className='mx-md-4 text-decoration-none text-white' to={data.link}>

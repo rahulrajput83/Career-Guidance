@@ -1,9 +1,16 @@
 /* Imports */
 import React, { useState } from 'react';
 import { Data } from './Data';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom'
 
 /* Login Functional Component */
 function Login() {
+    /* use to dispatch data to redux store. */
+    const dispatch = useDispatch();
+
+    /* After login used to navigate to dashboard. */
+    const navigate = useNavigate();
 
     /* login state used to store data from input fields. */
     const [login, setLogin] = useState({
@@ -31,12 +38,25 @@ function Login() {
             setInvalidMessage('Please enter correct password.')
         }
         else {
-            console.log(login)
-            setLogin({
-                email: '',
-                password: '',
-            })
+            saveData();
+            return navigate('/dashboard');
         }
+    }
+
+    const saveData = () => {
+        let action = {
+            type: 'ADD_USER',
+            payload: {
+                id: '',
+                Name: '',
+                email: login.email
+            }
+        };
+        dispatch(action)
+        setLogin({
+            email: '',
+            password: '',
+        })
     }
     return (
         <div className='w-100 d-flex flex-column flex-md-row p-3 justify-content-center justify-content-md-end'>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState} from 'react';
 import Question from '../../Images/icon-question.png'
 import Details from './Details';
 import RecentQuestions from './RecentQuestions';
@@ -7,10 +7,11 @@ import { useSelector } from 'react-redux'
 
 function QnA() {
     const user = useSelector((state) => state.userData).id;
+    const userEmail = useSelector((state) => state.userData).email;
     const userName = useSelector((state) => state.userData).Name;
     const email = useSelector((state) => state.userData).email;
     const [invalid, setInvalid] = useState('border-primary')
-
+    const [message, setMessage] = useState('')
 
     const [newQuestion, setNewQuestion] = useState({
         userId: user,
@@ -26,11 +27,17 @@ function QnA() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (newQuestion.question === '') {
-            setInvalid('border-danger')
+        if(userEmail === '') {
+            setInvalid('border-danger');
+            setMessage('Please Login First');
+        }
+        else if (newQuestion.question === '') {
+            setInvalid('border-danger');
+            setMessage('Please add your question.');
         }
         else {
-            fetch('http://localhost:2800/postask', {
+            setMessage('');
+            fetch('https://career-guidance-backend.vercel.app/postask', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -64,12 +71,13 @@ function QnA() {
                     <Details title='100+' content='Active Users' />
                     <Details title='10hrs max' content='Answering Time' />
                 </div>
-                <div className='w-100 d-flex flex-row mb-5 justify-centent-center align-items-center'>
+                <div className='w-100 d-flex flex-row justify-centent-center align-items-center'>
                     <form onSubmit={handleSubmit} className={`col-11 border border-2 ${invalid} py-2 px-3 rounded  rounded-3 bg-white col-md-6 d-flex flex-row mx-auto justify-centent-center align-items-center`} >
                         <input value={newQuestion.question} onChange={handleChange} type='text' placeholder='Ask your questions, try to be as detailed as possible.' className="w-100 border border-0 bg-transparent small form-control form-control-sm shadow-none" />
                         <button type='submit' className='py-2 px-4 btn bg-primary rounded text-white small'>Ask</button>
                     </form>
                 </div>
+                <span className='mt-2 mb-5 text-white fs-6'>{message}</span>
             </div>
             <div className='w-100 d-flex flex-row justify-centent-center align-items-center'>
                 <div className='col-11 mt-4 mx-auto col-md-9'>

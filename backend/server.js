@@ -25,7 +25,7 @@ mongoose.connect(process.env.connectionString)
 
 
 app.use(function (req, res, next) {
-    var allowedDomains = ['http://localhost:3000', 'https://rahulrajput83-imaginar.vercel.app'];
+    var allowedDomains = ['http://localhost:3000'];
     var origin = req.headers.origin;
     if (allowedDomains.indexOf(origin) > -1) {
         res.setHeader('Access-Control-Allow-Origin', origin);

@@ -13,7 +13,7 @@ function AccountDetails(props) {
         props.title === 'Profile' ?
           <div className='w-100 d-flex flex-column justify-centent-center align-items-center'>
             <img src={avtar} alt='' className='w-25 small' />
-            <table class="table table-hover mt-4">
+            <table className="table table-hover mt-4">
               <tbody>
                 <Table title='User ID' data={user} />
                 <Table title='Full Name' data={userName} />
