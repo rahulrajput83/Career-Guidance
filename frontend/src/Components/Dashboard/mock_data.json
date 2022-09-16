@@ -1,20 +1,93 @@
-[{"id":1,"career":"Civil Engineer"},
-{"id":2,"career":"Chartered Accountancy"},
-{"id":3,"career":"Nuclear Power Engineer"},
-{"id":4,"career":"Graphic Designer"},
-{"id":5,"career":"College Professor"},
-{"id":6,"career":"Cost Accountant"},
-{"id":7,"career":"Structural Engineer"},
-{"id":8,"career":"Sales Manager"},
-{"id":9,"career":"Design Engineer"},
-{"id":10,"career":"Teacher"},
-{"id":11,"career":"Lawyers"},
-{"id":12,"career":"Nurse Practicioner"},
-{"id":13,"career":"Chemical Engineer"},
-{"id":14,"career":"Project Manager"},
-{"id":15,"career":"Design Engineer"},
-{"id":16,"career":"Civil Engineer"},
-{"id":17,"career":"Human Resources Manager"},
-{"id":18,"career":"Design Engineer"},
-{"id":19,"career":"Mechanical Systems Engineer"},
-{"id":20,"career":"Robotics Technician"}]
+[
+    {
+        "id": 1,
+        "career": "Civil Engineer",
+        "description": "Civil Engineers are generally responsible for designing, constructing and managing various construction projects such as roads, building, tunnels, bridges and other."
+    },
+    {
+        "id": 2,
+        "career": "Chartered Accountancy",
+        "description": "The chartered accountant is responsible for implementing accounting systems and processes, preparing monthly financial reports, controlling the master data of the general ledger, and ensuring compliance with the state revenue service."
+    },
+    {
+        "id": 3,
+        "career": "Nuclear Power Engineer",
+        "description": "A nuclear power engineer is responsible for monitoring nuclear facility operations to identify any design, construction, or operation practices that violate safety regulations and laws that could jeopardize the safety of operations."
+    },
+    {
+        "id": 4,
+        "career": "Graphic Designer",
+        "description": "Graphic designers create visual text and imagery concepts, by hand or using computer software, to communicate ideas that inspire, inform, or captivate consumers. They develop the overall layout and production design for advertisements, brochures, magazines, and corporate reports, etc."
+        
+    },
+    {
+        "id": 5,
+        "career": "College Professor",
+        "description": "College professors are responsible for preparing course materials and teaching classes to graduate and undergraduate students. These courses may be in lecture, seminar, field study or laboratory formats. Many university professors also conduct related research in their field of expertise."
+    },
+    {
+        "id": 6,
+        "career": "Cost Accountant",
+        "description": "A Cost Accountant makes sure that the finances of an organization run smoothly. They focus on developing and maintaining adequate budgets, which include costs associated with operations such as employee benefits or marketing campaigns."
+    },
+    {
+        "id": 7,
+        "career": "Structural Engineer",
+        "description": "Structural engineers are primarily concerned with designing and constructing buildings and structures that are safe and capable of withstanding the elements to which they will be exposed, as well as improving the structural integrity of existing buildings. The job is very closely related to that of civil engineer."
+    },
+    {
+        "id": 8,
+        "career": "Sales Manager",
+        "description": "A Sales Manager is responsible for overseeing daily operations in the sales department. Their duties include hiring and training sales staff, relaying information from upper management to department staff about sales quotas and generating leads to divide among Sales Representatives."
+    },
+    {
+        "id": 9,
+        "career": "Design Engineer",
+        "description": "Design engineers are responsible for the research and design of a company’s new products and systems. They perform various tasks in an engineering department including drafting blueprints, creating test prototypes, and overseeing the manufacturing process."
+    },
+    {
+        "id": 10,
+        "career": "Teacher",
+        "description": "A Teacher is a professional who teaches students based on national curriculum guidelines within their specialist subject areas. Their duties include assigning homework, grading tests, documenting progress and keeping up with parent communication."
+    },
+    {
+        "id": 11,
+        "career": "Lawyers",
+        "description": "lawyer, one trained and licensed to prepare, manage, and either prosecute or defend a court action as an agent for another and who also gives advice on legal matters that may or may not require court action."
+    },
+    {
+        "id": 12,
+        "career": "Nurse Practicioner",
+        "description": "A nurse practitioner is an advanced practice nurse that helps with all aspects of patient care, including diagnosis, treatments and consultations. They may work in both inpatient and outpatient situations and can perform independently or as part of a treatment team."
+    },
+    {
+        "id": 13,
+        "career": "Chemical Engineer",
+        "description": "Chemical engineers develop and design chemical manufacturing processes. Chemical engineers apply the principles of chemistry, biology, physics, and math to solve problems that involve the production or use of chemicals, fuel, drugs, food, and many other products."
+    },
+    {
+        "id": 14,
+        "career": "Project Manager",
+        "description": "A project manager works closely with all the team members from the same or different departments. They are responsible for planning, executing, monitoring, and completing the project. They are in charge of the project scope and team management assigned to the project."
+    },
+    {
+        "id": 15,
+        "career": "Human Resources Manager",
+        "description": "Human Resources Managers are responsible for overseeing the administrative functions of an organization. They recruit new employees according to specifications set out in a strategic plan."
+    },
+    {
+        "id": 16,
+        "career": "Mechanical Systems Engineer",
+        "description": "Mechanical systems engineers analyze blueprints and specifications to recommend cost-reduction techniques and materials for production. They also inspect the operating systems and performance of equipment, resolving machinery failures, and modifying designs to improve feasibility."
+    },
+    {
+        "id": 17,
+        "career": "Robotics Technician",
+        "description": "Robotics technicians install, service, maintain, troubleshoot, and repair robots and automated production systems. They must understand computers, electrical and electronic systems, sensor and feedback principles, and how robots work as machines."
+    },
+    {
+        "id": 18,
+        "career": "Web Developer",
+        "description": "A Web Developer is a professional who is responsible for the design and construction of websites. They ensure that sites meet user expectations by ensuring they look good, run smoothly and offer easy access points with no loading issues between pages or error messages."
+    }
+]

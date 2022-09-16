@@ -36,7 +36,7 @@ function PsychometricTest() {
 
     const dispatch = useDispatch();
     const userData = useSelector((state) => state.userData);
-
+    const [userCareerPaths, setUserCareerPaths] = useState([])
 
     /* handleCard when user clicked on answer. */
     const handleCard = (title) => {
@@ -63,6 +63,8 @@ function PsychometricTest() {
                 setValue('d-flex')
             }
             else {
+                const shuffled = [...CareerPaths].sort(() => 0.5 - Math.random());
+                setUserCareerPaths(shuffled.slice(0, 6))
                 setPsyTest('visually-hidden');
                 setPsySuccess('');
             }
@@ -123,7 +125,7 @@ function PsychometricTest() {
         <div className='w-100 d-flex flex-column flex-md-row p-3 justify-content-center'>
 
             {/* Psychometric Test */}
-            <div className={`col bg-white px-4 col-md-7 ${psyTest} flex-column py-4 justify-content-start shadow rounded`}>
+            <div className={`col bg-white px-4 col-md-8 ${psyTest} flex-column py-4 justify-content-start shadow rounded`}>
                 <div className='w-100 mt-2'>
                     {
                         /* Map function on data. */
@@ -175,25 +177,25 @@ function PsychometricTest() {
 
 
             {/* Psychometric Test Success */}
-            <div className={`col bg-white px-4 col-md-7 ${psySuccess} flex-column py-4 justify-content-start shadow rounded`}>
+            <div className={`col bg-white px-3 col-md-8 ${psySuccess} flex-column py-4 justify-content-start shadow rounded`}>
                 <div className='w-100 mt-2'>
                     <h4 className='fs-6'>Your Test has generated the following indicative Career Fields</h4>
-                    <span className='fs-6'>Select one</span>
+                    <span className='small'>Select field closest to you</span>
                     <div className='d-flex flex-row flex-wrap justify-content-start mb-4'>
                         {
-                            CareerPaths.map((item, index) => {
+                            userCareerPaths.map((item, index) => {
                                 return (
-                                    <div onClick={() => submitCareerField(item.career)} role='button' key={`Field_${item.career}${index}`} className='me-3' >
+                                    <div onClick={() => submitCareerField(item.career)} role='button' key={`Field_${item.career}${index}`} className='col-6 col-md-4' >
                                         {
                                             item.career === careerField ?
-                                                <div className='bg-primary small text-white rounded d-flex flex-column shadow p-2 my-2'>
-                                                    <span className='fw-normal'>{item.career}</span>
-                                                    <span className='fw-light'>{item.career}</span>
+                                                <div style={{fontSize: '12px'}} className='bg-primary small text-white text-justify rounded d-flex flex-column shadow p-2 my-2'>
+                                                    <span className='fw-bold text-center'>{item.career}</span>
+                                                    <span className='fw-normal text-justify'>{item.description}</span>
                                                 </div>
                                                 :
-                                                <div className='bg-white small rounded d-flex flex-column shadow p-2 my-2'>
-                                                    <span className='fw-normal'>{item.career}</span>
-                                                    <span className='fw-light'>{item.career}</span>
+                                                <div style={{fontSize: '12px'}} className='bg-white small rounded d-flex text-justify flex-column shadow p-2 my-2'>
+                                                    <span className='fw-bold text-center'>{item.career}</span>
+                                                    <span className='fw-normal text-justify'>{item.description}</span>
                                                 </div>
                                         }
 
@@ -207,7 +209,7 @@ function PsychometricTest() {
                     {invalid ? <span className='text-danger mt-4'>Please choose one.<br /></span> : null}
                     <div className='d-flex py-3 w-full mb-4 justify-content-around position-relative flex-row'>
                         {/* Button to go to next question. */}
-                        <button onClick={handleSubmitTest} className="btn position-absolute end-0">Finish</button>
+                        <button onClick={handleSubmitTest} className="btn btn-primary position-absolute end-0">Finish</button>
                     </div>
                 </div>
             </div>
