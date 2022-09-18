@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
-import profile from '../../Images/profile1.png';
+import profile from '../../Images/mf-avatar.svg';
 import { useSelector } from 'react-redux'
 
 
@@ -32,7 +32,7 @@ function Answer() {
             setInvalid('border-danger')
         }
         else {
-            fetch('https://career-guidance-backend.vercel.app/postanswer', {
+            fetch('http://localhost:2800/postanswer', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -58,7 +58,7 @@ function Answer() {
     }
 
     const loadAnswer = useCallback(() => {
-        fetch('https://career-guidance-backend.vercel.app/getanswer', {
+        fetch('http://localhost:2800/getanswer', {
             method: 'GET'
         })
             .then(response => response.json())
@@ -74,7 +74,7 @@ function Answer() {
             .catch((err) => {
                 console.log('err')
             })
-        fetch('https://career-guidance-backend.vercel.app/getask', {
+        fetch('http://localhost:2800/getask', {
             method: 'GET'
         })
             .then(response => response.json())
@@ -106,7 +106,9 @@ function Answer() {
                                     return (
                                         <div className='w-full' key={index}>
                                             <div className='d-flex flex-row align-items-center justify-content-start'>
-                                                <img src={profile} alt='' />
+                                                <div style={{ width: '25px' }} className='d-flex justify-content-center align-items-center'>
+                                                    <img src={profile} alt='' className='w-100' />
+                                                </div>
                                                 <div className='d-flex mx-3 flex-column flex-md-row justify-content-start align-items-start'>
                                                     <div className='text-start small text-break'>{item.userName}</div>
                                                     <div className='small ms-0 ms-md-2 text-start text-black-50'>{new Date(item.date).toLocaleString("en-US", { timeZone: 'Asia/Kolkata' })}</div>
@@ -122,23 +124,27 @@ function Answer() {
                         </div> :
                         null
                 }
-                <div className='w-100 mt-5 mb-3 d-flex flex-row justify-centent-center align-items-center'>
+                {email ? <div className='w-100 mt-5 mb-3 d-flex flex-row justify-centent-center align-items-center'>
                     <form onSubmit={handleSubmit} className={`col border border-2 px-1 py-1 rounded ${invalid} rounded-3 bg-white col-md-12 d-flex flex-row mx-auto justify-centent-center align-items-center`} >
                         <input value={newAnswer.answer} onChange={handleChange} type='text' placeholder='Enter your answer here.' className="w-100 border border-0 bg-transparent small form-control form-control-sm shadow-none" />
                         <button type='submit' className='py-1 px-2 btn bg-primary rounded text-white small'>Submit</button>
                     </form>
-                </div>
+                </div> : <div className='w-100 mt-5 mb-3 text-center d-flex flex-row justify-centent-center align-items-center mx-auto'>
+                    <span className='mx-auto'>!! Login to submit your answer !!</span>
+                    </div>}
                 {data.length >= 1 ?
                     <div className='w-full'>
                         {
                             data.map((item, index) => {
                                 return (
-                                    <div key={index} className="w-full pt-3 mt-4 bg-white rounded d-flex flex-column">
+                                    <div key={index} className="w-full mx-4 mt-4 rounded d-flex flex-column opacity-100 p-2 bg-primary text-light ">
                                         <div className='d-flex flex-row align-items-center'>
-                                            <img src={profile} alt='' />
+                                            <div style={{ width: '25px' }} className='d-flex justify-content-center align-items-center'>
+                                                <img src={profile} alt='' className='w-100' />
+                                            </div>
                                             <div className='d-flex mx-3 flex-column flex-md-row justify-content-start align-items-start'>
-                                                <div className='text-start small text-break'>{item.userName}</div>
-                                                <div className='small ms-0 ms-md-2 text-start text-black-50'>{new Date(item.date).toLocaleString("en-US", { timeZone: 'Asia/Kolkata' })}</div>
+                                                <div className='text-start small text-break text-light'>{item.userName}</div>
+                                                <div className='small ms-0 ms-md-2 text-start text-light'>{new Date(item.date).toLocaleString("en-US", { timeZone: 'Asia/Kolkata' })}</div>
                                             </div>
                                         </div>
                                         <div className='mt-2 small text-break'>

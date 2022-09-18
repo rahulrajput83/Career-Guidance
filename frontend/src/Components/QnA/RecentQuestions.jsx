@@ -1,50 +1,47 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react'
+/* Imports */
+import React from 'react'
 import { Link } from 'react-router-dom';
-import Post from './Post';
+import profile from '../../Images/mf-avatar.svg'
 
+/* RecentQuestions Functional Component */
+function RecentQuestions(props) {
 
-function RecentQuestions() {
-    const [data, setData] = useState([])
-
-    useEffect(() => {
-        fetch('https://career-guidance-backend.vercel.app/getask', {
-            method: 'GET'
-        })
-            .then(response => response.json())
-            .then((response) => {
-                if (response.value.length >= 1) {
-                    const item = response.value.reverse();
-                    setData(item);
-                }
-            })
-            .catch((err) => {
-                console.log('err');
-            })
-    }, [])
     return (
         <div className='d-flex w-100 flex-column'>
-            <span className='fw-bold mb-3 fs-5'>
+            <span className='fw-bold fs-5'>
                 Recent Questions
             </span>
-            {data.length >= 1 ?
-                <div className='w-full shadow ps-3 bg-white rounded d-flex flex-column'>
+
+            {
+                props.loadingQuestions
+                    ?
+                    <div className='w-100 mb-5 d-flex bg-primary position-relative'>
+                        <span className="spinner-border text-primary position-absolute top-0 start-50" role="status" aria-hidden="true">
+                        </span>
+                    </div> :
+                    null
+            }
+
+            {props.data.length >= 1 ?
+                <div className='w-full d-flex flex-column'>
                     {
-                        data.map((item, index) => {
+                        /* Map function on data. */
+                        props.data.map((item, index) => {
                             return (
-                                <div key={index} className="d-flex ">
-                                    {/* <div className='d-flex flex-row align-items-center'>
-                                        <img src={profile} alt='' />
+                                <div key={index} className="d-flex shadow mt-4 w-full rounded ps-3 pt-3 flex-column">
+                                    <div className='d-flex flex-row align-items-center justify-content-start'>
+                                        <div style={{ width: '25px' }} className='d-flex justify-content-center align-items-center'>
+                                            <img src={profile} alt='' className='w-100' />
+                                        </div>
                                         <div className='d-flex mx-3 flex-column flex-md-row justify-content-start align-items-start'>
                                             <div className='text-start small text-break'>{item.userName}</div>
                                             <div className='small ms-0 ms-md-2 text-start text-black-50'>{new Date(item.date).toLocaleString("en-US", { timeZone: 'Asia/Kolkata' })}</div>
                                         </div>
                                     </div>
-                                    <div className='mt-2 fs-6 text-break'>
+                                    <div className='mt-3 text-break fs-6'>
                                         {item.question}
-                                    </div> */}
-                                    <Post userName={item.userName} question={item.question} data={item.date} />
-                                    <div className='w-full mt-1 d-flex justify-content-end align-items-center'>
+                                    </div>
+                                    <div className='w-full d-flex justify-content-end align-items-center'>
                                         <Link to={`/answer/${item._id}`} className='small text-decoration-none py-2 text-white rounded px-3 bg-primary'>Answers</Link>
                                     </div>
                                 </div>
@@ -54,7 +51,7 @@ function RecentQuestions() {
                 </div>
                 : null
             }
-            
+
         </div>
     )
 }
