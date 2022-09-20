@@ -2,7 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const AskQuestion = require('./Router/AskQuestion')
 const mongoose = require('mongoose');
-const Answers = require('./Router/Answer')
+const Answers = require('./Router/Answer');
+const CareerDetail = require('./Router/CareerDetail')
 
 const app = express();
 
@@ -37,6 +38,7 @@ app.use(function (req, res, next) {
 
 app.use('/', AskQuestion);
 app.use('/', Answers);
+app.use('/', CareerDetail);
 
 app.get('/', function(req, res) {
     res.send('You are at Home')

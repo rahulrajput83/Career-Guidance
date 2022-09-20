@@ -2,3 +2,5 @@ package-lock.json
 node_modules
 Router/Airtable.js
 .env
+CareerDetails.js
+CareerDetail.js
