@@ -18,7 +18,7 @@ export default function Dashboard()
   //useEffect is used to call Api as soon as the page load
      useEffect(()=>
     {
-      axios.get('https://newsapi.org/v2/top-headlines?country=us&apiKey=9904b4a740bf476383cc75a848f17e0d')
+      axios.get('https://newsapi.org/v2/top-headlines?q=career&from=2022-09-19&to=2022-09-19&sortBy=popularity&apiKey=9904b4a740bf476383cc75a848f17e0d')
       .then((response)=>
       {
         setNewsData((pre)=>
@@ -42,13 +42,13 @@ export default function Dashboard()
           <div className="input-group mb-3 column align-row-center mx-auto w-50" >
   <span className="input-group-text">Search</span>
   <div className="form-floating">
-    <input type="text" className="form-control" onChange={(event)=>{setQuery(event.target.value)}} onFocus={()=>{setList(true)}} id="floatingInputGroup1" placeholder="career path"/>
+    <input type="text" className="form-control" onChange={(event)=>{setQuery(event.target.value)}} onClick={()=>{setList(true)}} onMouseLeave={()=>{setList(false)}} id="floatingInputGroup1" placeholder="career path"/>
     <label htmlFor="floatingInputGroup1">Career Path</label>
   </div>
           </div>
-          {list?<div>
-           <ul className='list-group'>
-              {data.filter((post)=>{//use ti filter out the career
+          {list?<div className='mx-auto w-50'>
+           <ul className='list-group '>
+              {data.filter((post)=>{//use to filter out the career
                     if(query==='')
                     {
                       return post;
@@ -71,20 +71,20 @@ export default function Dashboard()
 
           {/*Latest News */}
 
-        {  value?<Carousel infiniteLoop useKeyboardArrows autoPlay>
+        {  value?<Carousel  centerMode={true} showThumbs={false} infiniteLoop useKeyboardArrows autoPlay>
                 <div>
-                    <img src={newsData[0].urlToImage}/>
-                    <h4>{newsData[0].title}</h4>
+                    <img  height={400} src={newsData[0].urlToImage}/>
+                   
                     <p className="legend">{newsData[0].description}</p>
                 </div>
                 <div>
-                    <img src={newsData[1].urlToImage}/>
-                    <h4>{newsData[1].title}</h4>
+                    <img width={900} height={400} src={newsData[1].urlToImage}/>
+                   
                     <p className="legend">{newsData[1].description}</p>
                 </div>
                 <div>
-                    <img src={newsData[2].urlToImage}/>
-                    <h4>{newsData[2].title}</h4>
+                    <img  width={900} height={400} src={newsData[2].urlToImage}/>
+                    
                     <p className="legend">{newsData[2].description}</p>
                 </div>
                 
@@ -93,11 +93,7 @@ export default function Dashboard()
 
  {/*Career Path */}
             <div className='container'>
-              <Carousel>
-                <div>
-                 
-                </div>
-              </Carousel>
+             
 
             </div>
             
