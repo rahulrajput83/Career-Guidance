@@ -36,8 +36,8 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use('/', AskQuestion);
-app.use('/', Answers);
+/* app.use('/', AskQuestion);
+app.use('/', Answers); */
 app.use('/', CareerDetails)
 
 app.get('/', function(req, res) {
