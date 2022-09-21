@@ -1,7 +1,15 @@
 [
     {
         "id": 1,
-        "career": "Civil Engineer",
+            "career": "Web Developer",
+            "Department": "IT",
+            "Description": "A Web Developer is a professional who is responsible for the design and construction of websites. They ensure that sites meet user expectations by ensuring they look good, run smoothly and offer easy access points with no loading issues between pages or error messages.",
+            "HighSchool": "Computer Science, Mathematics",
+            "Inter": "Computer Science, Mathematics",
+            "UG": "B.Tech or BCA",
+            "PG": "MCA",
+            "Skills": "Programming, Critical Thinking, Operations Analysis, Reading Comprehension, Active Listening, Complex Problem Solving, Speaking, Judgment and Decision Making, Active Learning",
+            "Exams": "Online Certificates in relevent field.",
         "description": "Civil Engineers are generally responsible for designing, constructing and managing various construction projects such as roads, building, tunnels, bridges and other."
     },
     {

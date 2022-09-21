@@ -12,6 +12,8 @@ import Answer from './Components/Answer/Answer';
 import Account from './Components/Account/Account';
 import Dashboard from './Components/Dashboard/Dashboard';
 import { useSelector } from 'react-redux';
+import CareenPath from './Components/CareerPath/CareerPath';
+import ZoomMeeting from './Components/ZoomMeeting/ZoomMeeting';
 
 /* Private Routing if user is not logged in then they can't access specific routes. */
 const PrivateRoutes = ({ user, children }) => {
@@ -46,7 +48,14 @@ function App() {
         <Route path='/account' element={<PrivateRoutes user={user}><Account /></PrivateRoutes>} />
         {/* Dashboard Route */}
         <Route path='/dashboard' element={<PrivateRoutes user={user}><Dashboard /></PrivateRoutes>} />
+        <Route
+            path="/dashboard/:id"
+            element={<PrivateRoutes user={user} ><CareenPath /></PrivateRoutes>}
+            
+          />
+           <Route path='/ZoomMeeting' element={<PrivateRoutes user={user}><ZoomMeeting /></PrivateRoutes>} />
       </Routes>
+     
       {/* Renders Footer Component */}
       <Footer />
     </BrowserRouter>

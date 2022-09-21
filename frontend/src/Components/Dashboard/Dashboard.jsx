@@ -5,7 +5,7 @@ import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useEffect } from 'react';
 import data from './mock_data.json';//list of career 
-
+import {Link} from 'react-router-dom';
 
 
 export default function Dashboard()
@@ -42,9 +42,14 @@ export default function Dashboard()
           <div className="input-group mb-3 column align-row-center mx-auto w-50" >
   <span className="input-group-text">Search</span>
   <div className="form-floating">
-    <input type="text" className="form-control" onChange={(event)=>{setQuery(event.target.value)}} onClick={()=>{setList(true)}} onMouseLeave={()=>{setList(false)}} id="floatingInputGroup1" placeholder="career path"/>
+    <input type="text" className="form-control" onChange={(event)=>{setQuery(event.target.value)}} onClick={()=>{setList(true)}} id="floatingInputGroup1" placeholder="career path"/>
     <label htmlFor="floatingInputGroup1">Career Path</label>
   </div>
+                {list?<div>
+                  <button type="button" className="close" aria-label="Close">
+  <span aria-hidden="true" onClick={()=>{setList(false)}}>&times;</span>
+                    </button>
+                      </div>:null}
           </div>
           {list?<div className='mx-auto w-50'>
            <ul className='list-group '>
@@ -59,7 +64,10 @@ export default function Dashboard()
                     }
               }).map((display)=>{
                 return <div key={display.id}>
-                  <li className="list-group-item">{display.career}</li>
+                   <Link to={`/dashboard/${display.career}`}>
+                    <li className="list-group-item">{display.career}</li>
+                    </Link>
+                  
                 </div>
               })}
            </ul>
@@ -101,7 +109,7 @@ export default function Dashboard()
                 {/* Renders Card Component with head & content. */}
                 <Card head='Know Yourself' content='Explore your aptitudes and interests through our test.' link='/psychometric-test' />
                 {/* Renders Card Component with head & content. */}
-                <Card head='Inform Yourself' content='The right information at the right time will get you to the right opportunity.' link='/login' />
+                <Card head='Schedule zoom meeting' content='Talk to our counsellor to get the best guidance' link='/ZoomMeeting' />
                 {/* Renders Card Component with head & content. */}
                 <Card head='Plan for Yourself' content='Expert guidance helps you make the most of your opportunities and succeed. Talk to our counsellors.' link='/login'/>
             </div>
