@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 
 export default class CandidateDetails {
 	constructor(

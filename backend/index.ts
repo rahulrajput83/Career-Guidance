@@ -7,7 +7,7 @@ import { resolve } from 'path';
 import fileupload from 'express-fileupload';
 
 import { connectToDatabase } from './src/services/database.service';
-import { CandidateDetailsRoutes } from './src/Router/candidateDetails.router';
+import { CandidateDetailsRoutes } from './src/routers/candidateDetails.router';
 
 class Server {
 	public app: express.Application;

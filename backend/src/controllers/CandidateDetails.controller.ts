@@ -3,7 +3,7 @@ import * as bcrypt from 'bcrypt';
 import { ObjectId } from 'mongodb';
 import {
 	generateToken,
-} from '../../utils/Util';
+} from '../utils/Util';
 import { collections } from '../services/database.service';
 import CandidateDetails from '../models/candidateDetails';
 import Validator from 'validatorjs';
