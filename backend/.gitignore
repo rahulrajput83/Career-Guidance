@@ -3,4 +3,4 @@ node_modules
 Router/Airtable.js
 .env
 CareerDetails.js
-CareerDetail.js
+Router/CareerDetail.js
