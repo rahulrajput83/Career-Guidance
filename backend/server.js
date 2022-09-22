@@ -1,8 +1,8 @@
 require('dotenv').config();
 const express = require('express');
-/* const AskQuestion = require('./Router/AskQuestion') */
+const AskQuestion = require('./Router/AskQuestion')
 const mongoose = require('mongoose');
-/* const Answers = require('./Router/Answer') */
+const Answers = require('./Router/Answer')
 const CareerDetails = require('./Router/CareerDetail')
 
 const app = express();
@@ -36,8 +36,8 @@ app.use(function (req, res, next) {
     next();
 });
 
-/* app.use('/', AskQuestion);
-app.use('/', Answers); */
+app.use('/', AskQuestion);
+app.use('/', Answers);
 app.use('/', CareerDetails)
 
 app.get('/', function(req, res) {
