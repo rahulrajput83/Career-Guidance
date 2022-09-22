@@ -3,7 +3,8 @@ const express = require('express');
 const AskQuestion = require('./Router/AskQuestion')
 const mongoose = require('mongoose');
 const Answers = require('./Router/Answer')
-const CareerDetails = require('./Router/CareerDetail')
+const CareerDetails = require('./Router/CareerDetail');
+const Register = require('./Router/Register')
 
 const app = express();
 
@@ -26,7 +27,7 @@ mongoose.connect(process.env.connectionString)
 
 
 app.use(function (req, res, next) {
-    var allowedDomains = ['http://localhost:3000', 'https://rahulrajput83-imaginar.vercel.app'];
+    var allowedDomains = ['http://localhost:3000', 'https://career-guidance.vercel.app'];
     var origin = req.headers.origin;
     if (allowedDomains.indexOf(origin) > -1) {
         res.setHeader('Access-Control-Allow-Origin', origin);
@@ -38,7 +39,8 @@ app.use(function (req, res, next) {
 
 app.use('/', AskQuestion);
 app.use('/', Answers);
-app.use('/', CareerDetails)
+app.use('/', CareerDetails);
+app.use('/', Register);
 
 app.get('/', function(req, res) {
     res.send('You are at Home')

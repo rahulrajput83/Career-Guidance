@@ -1,5 +1,5 @@
 /* Imports */
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Data } from './Data';
 import signinImg from '../../Images/Signup.svg'
 
@@ -35,21 +35,37 @@ function Register() {
             setInvalidMessage('Invalid, please check fields.')
         }
         else {
-            console.log(registration)
-            setRegistration({
-                name: '',
-                email: '',
-                mobile: '',
-                password: '',
-                reenter: ''
+            fetch('http://localhost:2800/register', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(registration)
             })
+                .then(response => response.json())
+                .then((response) => {
+                    setInvalid(true);
+                    setInvalidMessage(response.message);
+                    setRegistration({
+                        name: '',
+                        email: '',
+                        mobile: '',
+                        password: '',
+                        reenter: ''
+                    })
+                })
+                .catch(() => {
+                    setInvalid(true);
+                    setInvalidMessage('err, please try again.')
+                })
         }
     }
 
     return (
-        <div className='w-100 d-flex flex-column flex-md-row p-3 justify-content-center justify-content-md-end' style={{ 
-            background: `url(${signinImg}) no-repeat left center`, backgroundSize: 'contain' 
-          }}>
+        <div className='w-100 d-flex flex-column flex-md-row p-3 justify-content-center justify-content-md-end' style={{
+            background: `url(${signinImg}) no-repeat left center`, backgroundSize: 'contain'
+        }}>
             <div className='col bg-white col-md-4 d-flex flex-column align-items-center py-2 justify-content-center shadow rounded'>
                 <h5 className='fs-6'>Register</h5>
                 {/* Form */}
@@ -60,7 +76,7 @@ function Register() {
                             return (
                                 <div key={index} className='w-100 small mb-3'>
                                     <h6 className='small'>{item.title}<span className='text-danger'>*</span></h6>
-                                    <input value={registration[`${item.name}`]} onInvalid={() => setInvalid(true)} onChange={handleChange} name={item.name} type={item.type} required placeholder={item.placeholder} className="small form-control form-control-sm py-2 shadow-none" />
+                                    <input maxLength={item.name === 'mobile' ? 10 : null} value={registration[`${item.name}`]} onInvalid={() => setInvalid(true)} onChange={handleChange} name={item.name} type={item.type} required placeholder={item.placeholder} className="small form-control form-control-sm py-2 shadow-none" />
                                 </div>
                             )
                         })
