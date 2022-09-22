@@ -1,7 +1,6 @@
 /* Imports */
 import React, { useState } from 'react';
 import { Data } from './Data';
-import signinImg from '../../Images/Signup.svg'
 
 /* Register Functional Component */
 function Register() {
@@ -20,6 +19,9 @@ function Register() {
     /* Invalid Mesaage state used to show message when user enter invalid data. */
     const [invalidMessage, setInvalidMessage] = useState('Invalid, please check fields.')
 
+    /* useState for loading spinner. */
+    const [loading, setLoading] = useState(false);
+
     /* handleChange function triggered when input field data is changed. */
     const handleChange = (e) => {
         setInvalid(false);
@@ -35,6 +37,7 @@ function Register() {
             setInvalidMessage('Invalid, please check fields.')
         }
         else {
+            setLoading(true)
             fetch('http://localhost:2800/register', {
                 method: 'POST',
                 headers: {
@@ -45,6 +48,7 @@ function Register() {
             })
                 .then(response => response.json())
                 .then((response) => {
+                    setLoading(false)
                     setInvalid(true);
                     setInvalidMessage(response.message);
                     setRegistration({
@@ -56,6 +60,7 @@ function Register() {
                     })
                 })
                 .catch(() => {
+                    setLoading(false)
                     setInvalid(true);
                     setInvalidMessage('err, please try again.')
                 })
@@ -63,9 +68,7 @@ function Register() {
     }
 
     return (
-        <div className='w-100 d-flex flex-column flex-md-row p-3 justify-content-center justify-content-md-end' style={{
-            background: `url(${signinImg}) no-repeat left center`, backgroundSize: 'contain'
-        }}>
+        <div className='w-100 d-flex flex-column flex-md-row p-3 justify-content-center justify-content-md-end'>
             <div className='col bg-white col-md-4 d-flex flex-column align-items-center py-2 justify-content-center shadow rounded'>
                 <h5 className='fs-6'>Register</h5>
                 {/* Form */}
@@ -85,7 +88,10 @@ function Register() {
                     {invalid ? <span className='text-danger small'>{invalidMessage}<br /></span> : null}
 
                     {/* Button to Submit Form data. */}
-                    <button type="submit" className="btn btn-sm py-2 px-4 w-auto my-2 btn-primary">Submit</button>
+                    <button type="submit" className="btn d-flex justify-content-center align-items-center btn-sm py-2 px-2 w-auto my-4 btn-primary">
+                        {loading ? <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> : null}
+                        <span>Submit</span>
+                    </button>
                 </form>
             </div>
         </div>
