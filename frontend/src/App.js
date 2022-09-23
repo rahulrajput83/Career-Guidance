@@ -26,7 +26,7 @@ const PrivateRoutes = ({ user, children }) => {
 function App() {
   /* Gets data from redux */
   const user = useSelector((state) => state.userData).email;
-  console.log(process.env)
+  
   return (
     /* Router */
     <BrowserRouter>
