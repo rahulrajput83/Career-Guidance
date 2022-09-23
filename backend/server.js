@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const Answers = require('./Router/Answer')
 const CareerDetails = require('./Router/CareerDetail');
 const Register = require('./Router/Register')
+const Login = require('./Router/Login')
+
 
 const app = express();
 
@@ -41,6 +43,7 @@ app.use('/', AskQuestion);
 app.use('/', Answers);
 app.use('/', CareerDetails);
 app.use('/', Register);
+app.use('/', Login);
 
 app.get('/', function(req, res) {
     res.send('You are at Home')

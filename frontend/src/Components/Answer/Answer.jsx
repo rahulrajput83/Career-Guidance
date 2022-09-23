@@ -32,7 +32,7 @@ function Answer() {
             setInvalid('border-danger')
         }
         else {
-            fetch('http://localhost:2800/postanswer', {
+            fetch(`${process.env.REACT_APP_BACKEND_URL}/postanswer`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -58,7 +58,7 @@ function Answer() {
     }
 
     const loadAnswer = useCallback(() => {
-        fetch('http://localhost:2800/getanswer', {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/getanswer`, {
             method: 'GET'
         })
             .then(response => response.json())
@@ -74,7 +74,7 @@ function Answer() {
             .catch((err) => {
                 console.log('err')
             })
-        fetch('http://localhost:2800/getask', {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/getask`, {
             method: 'GET'
         })
             .then(response => response.json())

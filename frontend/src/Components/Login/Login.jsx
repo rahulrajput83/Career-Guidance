@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 /* Login Functional Component */
 function Login() {
+
     /* use to dispatch data to redux store. */
     const dispatch = useDispatch();
 
@@ -23,7 +24,7 @@ function Login() {
     /* Invalid Mesaage state used to show message when user enter invalid data. */
     const [invalidMessage, setInvalidMessage] = useState('Invalid, please check fields.')
 
-   /* handleChange function triggered when input field data is changed. */
+    /* handleChange function triggered when input field data is changed. */
     const handleChange = (e) => {
         setInvalid(false);
         setLogin({ ...login, [e.target.name]: e.target.value })
@@ -35,28 +36,50 @@ function Login() {
         /* Conditions to validate form data. */
         if (login.password.length < 6) {
             setInvalid(true);
-            setInvalidMessage('Please enter correct password.')
+            setInvalidMessage('Please enter valid password.')
         }
         else {
-            saveData();
-            return navigate('/dashboard');
+            fetch(`${process.env.REACT_APP_BACKEND_URL}/login`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(login)
+            })
+                .then(response => response.json())
+                .then((response) => {
+                    if (response.message === 'Successfully Login') {
+                        setLogin({
+                            email: '',
+                            password: ''
+                        });
+                        saveData(response.data);
+                    }
+                    else {
+                        setInvalid(true);
+                        setInvalidMessage(response.message);
+                    }
+                })
+                .catch(() => {
+                    setInvalid(true);
+                    setInvalidMessage('err, please try again.')
+                })
         }
     }
 
-    const saveData = () => {
+    const saveData = (data) => {
         let action = {
             type: 'ADD_USER',
             payload: {
-                id: '',
-                Name: '',
-                email: login.email
+                id: data[0]._id,
+                Name: data[0].FullName,
+                email: data[0].emailID,
+                mobile: data[0].mobileNumber,
             }
         };
-        dispatch(action)
-        setLogin({
-            email: '',
-            password: '',
-        })
+        dispatch(action);
+        return navigate('/dashboard');
     }
     return (
         <div className='w-100 d-flex flex-column flex-md-row p-3 justify-content-center justify-content-md-end'>
@@ -77,7 +100,7 @@ function Login() {
                     }
                     {/* Invalid Message */}
                     {invalid ? <span className='text-danger small'>{invalidMessage}<br /></span> : null}
-                    
+
                     {/* Button to Submit Form data. */}
                     <button type="submit" className="btn btn-sm py-2 px-4 w-auto my-2 btn-primary">Login</button>
                 </form>

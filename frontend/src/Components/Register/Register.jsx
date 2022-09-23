@@ -38,7 +38,7 @@ function Register() {
         }
         else {
             setLoading(true)
-            fetch('http://localhost:2800/register', {
+            fetch(`${process.env.REACT_APP_BACKEND_URL}/register`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

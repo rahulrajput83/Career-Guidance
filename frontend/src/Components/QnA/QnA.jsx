@@ -39,12 +39,11 @@ function QnA() {
         /* Set loadingQuestions to true. */
         setLoadingQuestions(true);
         /* fetch with get method */
-        fetch('http://localhost:2800/getask', {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/getask`, {
             method: 'GET'
         })
             .then(response => response.json())
             .then((response) => {
-                console.log(response);
                 /* if response length is greater than or equals to 1. */
                 if (response.value.length >= 1) {
                     /* reverse the response */
@@ -86,7 +85,7 @@ function QnA() {
             setMessage('');
             setLoadingPostQuestion(true);
             /* Fetch with post */
-            fetch('http://localhost:2800/postask', {
+            fetch(`${process.env.REACT_APP_BACKEND_URL}/postask`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

@@ -4,9 +4,7 @@ import Table from './Table';
 import avtar from '../../Images/mf-avatar.svg'
 
 function AccountDetails(props) {
-  const user = useSelector((state) => state.userData).id;
-  const userName = useSelector((state) => state.userData).Name;
-  const userEmail = useSelector((state) => state.userData).email;
+  const user = useSelector((state) => state.userData);
   return (
     <div className='w-100 justify-content-center align-items-center mt-2 d-flex text-primary'>
       {
@@ -15,11 +13,10 @@ function AccountDetails(props) {
             <img src={avtar} alt='' className='w-25 small' />
             <table className="table table-hover mt-4">
               <tbody>
-                <Table title='User ID' data={user} />
-                <Table title='Full Name' data={userName} />
-                <Table title='Email Address' data={userEmail} />
-                <Table title='Mobile Number' data='45815184855' />
-                <Table title='Joined on' data='252265645' />
+                <Table title='User ID' data={user.id} />
+                <Table title='Full Name' data={user.Name} />
+                <Table title='Email Address' data={user.email} />
+                <Table title='Mobile Number' data={user.mobile} />
               </tbody>
             </table>
           </div>

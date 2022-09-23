@@ -3,7 +3,8 @@ export default function reducer(state = {
         id: '',
         Name: '',
         email: '',
-        careerField: ''
+        careerField: '',
+        mobile: '',
     }
 }, action) {
     switch (action.type) {
