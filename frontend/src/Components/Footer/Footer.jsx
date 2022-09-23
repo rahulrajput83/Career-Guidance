@@ -17,8 +17,6 @@ function Footer() {
                 <div className='mt-2 d-flex flex-column'>
                 <CopyrightLink link='https://www.linkedin.com/in/rahulrajput83/' name='Rahul Rajput' />
                 <CopyrightLink link='https://www.linkedin.com/in/rahulrajput83/' name='Afreen Ansari' />
-                <CopyrightLink link='https://www.linkedin.com/in/rahulrajput83/' name='Anirudh' />
-                <CopyrightLink link='https://www.linkedin.com/in/rahulrajput83/' name='Achintya' />
                 </div>
             </div>
         </div>

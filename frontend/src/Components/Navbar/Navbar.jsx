@@ -17,10 +17,6 @@ const Data = [
         link: '/dashboard'
     },
     {
-        name: 'Plans',
-        link: '/plans'
-    },
-    {
         name: 'QnA',
         link: '/qna'
     },
