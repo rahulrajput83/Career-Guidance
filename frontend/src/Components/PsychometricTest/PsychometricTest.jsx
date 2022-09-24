@@ -36,6 +36,7 @@ function PsychometricTest() {
 
     const dispatch = useDispatch();
     const userData = useSelector((state) => state.userData);
+    const userId = useSelector((state) => state.userData).id;
     const [userCareerPaths, setUserCareerPaths] = useState([])
 
     /* handleCard when user clicked on answer. */
@@ -97,7 +98,7 @@ function PsychometricTest() {
 
     /* Career Field is selected */
     const submitCareerField = (career) => {
-        setCareerField(career)
+        setCareerField(career);
     }
 
     /* When finish button clicked */
@@ -107,8 +108,23 @@ function PsychometricTest() {
         }
         else {
             setInvalid(false)
-            saveData();
-            return navigate('/dashboard');
+            fetch(`${process.env.REACT_APP_BACKEND_URL}/careerfield`, {
+                method: 'PATCH',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({id: userId, careerField: careerField})
+            })
+                .then(response => response.json())
+                .then((response) => {
+                    saveData();
+                    console.log(response.message)
+                })
+                .catch(() => {
+                    console.log('err')
+                })
+            
         }
     }
 
@@ -119,6 +135,7 @@ function PsychometricTest() {
             payload: { ...userData, careerField: careerField }
         };
         dispatch(action)
+        navigate('/dashboard');
     }
 
     return (
@@ -188,12 +205,12 @@ function PsychometricTest() {
                                     <div onClick={() => submitCareerField(item.career)} role='button' key={`Field_${item.career}${index}`} className='col-6 col-md-4' >
                                         {
                                             item.career === careerField ?
-                                                <div style={{fontSize: '12px'}} className='bg-primary small text-white text-justify rounded d-flex flex-column shadow p-2 my-2'>
+                                                <div style={{ fontSize: '12px' }} className='bg-primary small text-white text-justify rounded d-flex flex-column shadow p-2 my-2'>
                                                     <span className='fw-bold text-center'>{item.career}</span>
                                                     <span className='fw-normal text-justify'>{item.description}</span>
                                                 </div>
                                                 :
-                                                <div style={{fontSize: '12px'}} className='bg-white small rounded d-flex text-justify flex-column shadow p-2 my-2'>
+                                                <div style={{ fontSize: '12px' }} className='bg-white small rounded d-flex text-justify flex-column shadow p-2 my-2'>
                                                     <span className='fw-bold text-center'>{item.career}</span>
                                                     <span className='fw-normal text-justify'>{item.description}</span>
                                                 </div>
