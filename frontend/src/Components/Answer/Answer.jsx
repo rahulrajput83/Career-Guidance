@@ -12,6 +12,8 @@ function Answer() {
     const email = useSelector((state) => state.userData).email;
     const [data, setData] = useState([])
     const [question, setQuestion] = useState([])
+    const [loading, setLoading] = useState(false);
+    const [loadingAnswer, setLoadingAnswer] = useState(false);
 
     const [newAnswer, setNewAnswer] = useState({
         userId: user,
@@ -32,6 +34,7 @@ function Answer() {
             setInvalid('border-danger')
         }
         else {
+            setLoadingAnswer(true);
             fetch(`${process.env.REACT_APP_BACKEND_URL}/postanswer`, {
                 method: 'POST',
                 headers: {
@@ -43,6 +46,7 @@ function Answer() {
                 .then(response => response.json())
                 .then((response) => {
                     if (response.message === 'Saved') {
+                        setLoadingAnswer(false)
                         loadAnswer();
                         setNewAnswer({
                             userId: user,
@@ -56,6 +60,26 @@ function Answer() {
         }
 
     }
+
+    const loadQuestion = useCallback(() => {
+        setLoading(true);
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/getask`, {
+            method: 'GET'
+        })
+            .then(response => response.json())
+            .then((response) => {
+                if (response.value.length >= 1) {
+                    const filtered = response.value.filter(data => {
+                        return data._id === questionId
+                    })
+                    setQuestion(filtered);
+                    setLoading(false)
+                }
+            })
+            .catch((err) => {
+                console.log('err')
+            })
+    }, [questionId]);
 
     const loadAnswer = useCallback(() => {
         fetch(`${process.env.REACT_APP_BACKEND_URL}/getanswer`, {
@@ -74,30 +98,25 @@ function Answer() {
             .catch((err) => {
                 console.log('err')
             })
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/getask`, {
-            method: 'GET'
-        })
-            .then(response => response.json())
-            .then((response) => {
-                if (response.value.length >= 1) {
-                    const filtered = response.value.filter(data => {
-                        return data._id === questionId
-                    })
-                    setQuestion(filtered)
-                }
-            })
-            .catch((err) => {
-                console.log('err')
-            })
     }, [questionId])
 
     useEffect(() => {
+        loadQuestion();
         loadAnswer();
-    }, [loadAnswer]);
+    }, [loadQuestion, loadAnswer]);
 
     return (
         <div className='w-full mt-3 d-flex flex-row justify-content-center align-items-center'>
-            <div className='col-11 p-3 col-md-7 shadow'>
+            <div className='col-11 p-3 col-md-7 shadow d-flex flex-column'>
+                {
+                    loading
+                        ?
+                        <div className='w-100 mb-5 d-flex bg-primary position-relative'>
+                            <span className="spinner-border text-primary position-absolute top-0 start-50" role="status" aria-hidden="true">
+                            </span>
+                        </div> :
+                        null
+                }
                 {
                     question.length >= 1 ?
                         <div className='w-full'>
@@ -109,9 +128,9 @@ function Answer() {
                                                 <div style={{ width: '25px' }} className='d-flex justify-content-center align-items-center'>
                                                     <img src={profile} alt='' className='w-100' />
                                                 </div>
-                                                <div className='d-flex mx-3 flex-column flex-md-row justify-content-start align-items-start'>
+                                                <div className='d-flex mx-3 flex-column flex-md-row justify-content-center align-items-start align-items-md-center'>
                                                     <div className='text-start small text-break'>{item.userName}</div>
-                                                    <div className='small ms-0 ms-md-2 text-start text-black-50'>{new Date(item.date).toLocaleString("en-US", { timeZone: 'Asia/Kolkata' })}</div>
+                                                    <div style={{fontSize:'12px'}} className='ms-0 ms-md-2 text-start text-black-50'>{new Date(item.date).toLocaleString("en-US", { timeZone: 'Asia/Kolkata' })}</div>
                                                 </div>
                                             </div>
                                             <div className='mt-2 text-break fs-6'>
@@ -127,24 +146,27 @@ function Answer() {
                 {email ? <div className='w-100 mt-5 mb-3 d-flex flex-row justify-centent-center align-items-center'>
                     <form onSubmit={handleSubmit} className={`col border border-2 px-1 py-1 rounded ${invalid} rounded-3 bg-white col-md-12 d-flex flex-row mx-auto justify-centent-center align-items-center`} >
                         <input value={newAnswer.answer} onChange={handleChange} type='text' placeholder='Enter your answer here.' className="w-100 border border-0 bg-transparent small form-control form-control-sm shadow-none" />
-                        <button type='submit' className='py-1 px-2 btn bg-primary rounded text-white small'>Submit</button>
+                        <button type='submit' className='py-1 px-2 btn bg-primary d-flex justify-content-center align-items-center rounded text-white small'>
+                            {loadingAnswer ? <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> : null}
+                            <span>Submit</span></button>
                     </form>
                 </div> : <div className='w-100 mt-5 mb-3 text-center d-flex flex-row justify-centent-center align-items-center mx-auto'>
                     <span className='mx-auto'>!! Login to submit your answer !!</span>
-                    </div>}
+                </div>}
+
                 {data.length >= 1 ?
                     <div className='w-full'>
                         {
                             data.map((item, index) => {
                                 return (
-                                    <div key={index} className="w-full mx-4 mt-4 rounded d-flex flex-column opacity-100 p-2 bg-primary text-light ">
+                                    <div key={index} className="w-full mx-md-4 mx-0 mt-4 rounded d-flex flex-column opacity-100 p-2 bg-primary text-light ">
                                         <div className='d-flex flex-row align-items-center'>
                                             <div style={{ width: '25px' }} className='d-flex justify-content-center align-items-center'>
                                                 <img src={profile} alt='' className='w-100' />
                                             </div>
-                                            <div className='d-flex mx-3 flex-column flex-md-row justify-content-start align-items-start'>
+                                            <div className='d-flex mx-3 flex-column flex-md-row justify-content-center align-items-start align-items-md-center'>
                                                 <div className='text-start small text-break text-light'>{item.userName}</div>
-                                                <div className='small ms-0 ms-md-2 text-start text-light'>{new Date(item.date).toLocaleString("en-US", { timeZone: 'Asia/Kolkata' })}</div>
+                                                <div style={{fontSize:'12px'}} className=' ms-0 ms-md-2 text-start text-light'>{new Date(item.date).toLocaleString("en-US", { timeZone: 'Asia/Kolkata' })}</div>
                                             </div>
                                         </div>
                                         <div className='mt-2 small text-break'>

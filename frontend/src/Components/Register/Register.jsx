@@ -89,7 +89,7 @@ function Register() {
 
                     {/* Button to Submit Form data. */}
                     <button type="submit" className="btn d-flex justify-content-center align-items-center btn-sm py-2 px-3 w-auto my-4 btn-primary">
-                        {loading ? <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> : null}
+                        {loading ? <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> : null}
                         <span>Submit</span>
                     </button>
                 </form>
