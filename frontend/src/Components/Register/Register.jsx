@@ -88,7 +88,7 @@ function Register() {
                     {invalid ? <span className='text-danger small'>{invalidMessage}<br /></span> : null}
 
                     {/* Button to Submit Form data. */}
-                    <button type="submit" className="btn d-flex justify-content-center align-items-center btn-sm py-2 px-2 w-auto my-4 btn-primary">
+                    <button type="submit" className="btn d-flex justify-content-center align-items-center btn-sm py-2 px-3 w-auto my-4 btn-primary">
                         {loading ? <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> : null}
                         <span>Submit</span>
                     </button>

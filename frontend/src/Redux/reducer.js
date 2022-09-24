@@ -13,13 +13,15 @@ export default function reducer(state = {
                 ...state,
                 userData: action.payload
             };
-        case "DELETE_USER":
+        case "Logout":
             return {
                 ...state,
                 userData: {
                     id: '',
                     Name: '',
-                    email: ''
+                    email: '',
+                    careerField: '',
+                    mobile: '',
                 }
             };
         default:

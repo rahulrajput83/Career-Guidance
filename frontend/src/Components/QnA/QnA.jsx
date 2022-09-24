@@ -50,8 +50,8 @@ function QnA() {
                     const item = response.value.reverse();
                     /* Store in data useState. */
                     setData(item);
-                    setLoadingQuestions(false)
                 }
+                setLoadingQuestions(false)
             })
             .catch((err) => {
                 console.log('err');

@@ -1,5 +1,5 @@
 /* Imports */
-import React from 'react';
+import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -42,6 +42,8 @@ const Data = [
 function NavbarComponent() {
     /* GEts data from redux */
     const user = useSelector((state) => state.userData).email;
+
+    const [expanded, setExpanded] = useState(false);
     return (
         /* Navbar imported from Bootstrap */
         <Navbar bg="primary" expand="md">
@@ -50,7 +52,7 @@ function NavbarComponent() {
                 {/* Navbar.Brand imported from Bootstrap shown to left side. */}
                 <Navbar.Brand><Link to='/' className='text-white fw-bolder text-decoration-none'>Career Guidance</Link></Navbar.Brand>
                 {/* Navbar.Toggle imported from Bootstrap shown in small screen to open menu. */}
-                <Navbar.Toggle aria-controls="basic-navbar-nav" className='fs-6 bg-white shadow-none py-1 px-2' />
+                <Navbar.Toggle onClick={() => setExpanded(expanded ? false : "expanded")} aria-controls="basic-navbar-nav" className='fs-6 bg-white shadow-none py-1 px-2' />
                 {/* Navbar Items. */}
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="w-100 d-flex justify-content-end">
@@ -63,7 +65,7 @@ function NavbarComponent() {
                                         {(data.name === 'Login' && user !== '') || (data.name === 'Register' && user !== '') || (data.name === 'Dashboard' && user === '') || (data.name === 'Account' && user === '')
                                             ? null
                                             :
-                                            <Link className='mx-md-4 text-decoration-none text-white' to={data.link}>
+                                            <Link onClick={() => setExpanded(false)} className='mx-md-4 text-decoration-none text-white' to={data.link}>
                                                 {data.name}
                                             </Link>}
                                     </div>

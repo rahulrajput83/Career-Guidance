@@ -7,6 +7,9 @@ import { useNavigate } from 'react-router-dom'
 /* Login Functional Component */
 function Login() {
 
+    /* useState to show loading spinner. */
+    const [loading, setLoading] = useState(false);
+
     /* use to dispatch data to redux store. */
     const dispatch = useDispatch();
 
@@ -39,6 +42,7 @@ function Login() {
             setInvalidMessage('Please enter valid password.')
         }
         else {
+            setLoading(true)
             fetch(`${process.env.REACT_APP_BACKEND_URL}/login`, {
                 method: 'POST',
                 headers: {
@@ -49,6 +53,7 @@ function Login() {
             })
                 .then(response => response.json())
                 .then((response) => {
+                    setLoading(false)
                     if (response.message === 'Successfully Login') {
                         setLogin({
                             email: '',
@@ -62,6 +67,7 @@ function Login() {
                     }
                 })
                 .catch(() => {
+                    setLoading(false)
                     setInvalid(true);
                     setInvalidMessage('err, please try again.')
                 })
@@ -76,6 +82,7 @@ function Login() {
                 Name: data[0].FullName,
                 email: data[0].emailID,
                 mobile: data[0].mobileNumber,
+                careerField: data[0].careerField,
             }
         };
         dispatch(action);
@@ -102,7 +109,10 @@ function Login() {
                     {invalid ? <span className='text-danger small'>{invalidMessage}<br /></span> : null}
 
                     {/* Button to Submit Form data. */}
-                    <button type="submit" className="btn btn-sm py-2 px-4 w-auto my-2 btn-primary">Login</button>
+                    <button type="submit" className="btn d-flex justify-content-center align-items-center btn-sm py-2 px-3 w-auto my-4 btn-primary">
+                    {loading ? <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> : null}
+                    <span>Login</span>
+                    </button>
                 </form>
             </div>
         </div>
