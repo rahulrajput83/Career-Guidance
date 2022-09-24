@@ -18,6 +18,7 @@ function AccountDetails() {
           <Table title='User ID' data={user.id} />
           <Table title='Email Address' data={user.email} />
           <Table title='Mobile Number' data={`+91${user.mobile}`} />
+          <Table title='Career Field' data={user.careerField} />
         </div>
       </div>
     </div>

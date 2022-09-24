@@ -37,7 +37,8 @@ function PsychometricTest() {
     const dispatch = useDispatch();
     const userData = useSelector((state) => state.userData);
     const userId = useSelector((state) => state.userData).id;
-    const [userCareerPaths, setUserCareerPaths] = useState([])
+    const [userCareerPaths, setUserCareerPaths] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     /* handleCard when user clicked on answer. */
     const handleCard = (title) => {
@@ -107,7 +108,8 @@ function PsychometricTest() {
             setInvalid(true)
         }
         else {
-            setInvalid(false)
+            setInvalid(false);
+            setLoading(true)
             fetch(`${process.env.REACT_APP_BACKEND_URL}/careerfield`, {
                 method: 'PATCH',
                 headers: {
@@ -118,10 +120,12 @@ function PsychometricTest() {
             })
                 .then(response => response.json())
                 .then((response) => {
+                    setLoading(false)
                     saveData();
-                    console.log(response.message)
+                    
                 })
                 .catch(() => {
+                    setLoading(false)
                     console.log('err')
                 })
             
@@ -226,7 +230,9 @@ function PsychometricTest() {
                     {invalid ? <span className='text-danger mt-4'>Please choose one.<br /></span> : null}
                     <div className='d-flex py-3 w-full mb-4 justify-content-around position-relative flex-row'>
                         {/* Button to go to next question. */}
-                        <button onClick={handleSubmitTest} className="btn btn-primary position-absolute end-0">Finish</button>
+                        <button onClick={handleSubmitTest} className="btn d-flex justify-content-center align-items-center btn-primary position-absolute end-0">
+                        {loading ? <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> : null}
+                            <span>Finish</span></button>
                     </div>
                 </div>
             </div>
