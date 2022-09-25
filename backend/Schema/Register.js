@@ -6,6 +6,7 @@ const RegisterSchema = new mongoose.Schema({
     mobileNumber: Number,
     password: String,
     careerField: String,
+    Verified: Boolean
 });
 
 

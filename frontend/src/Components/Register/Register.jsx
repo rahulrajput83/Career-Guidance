@@ -4,6 +4,9 @@ import { Data } from './Data';
 
 /* Register Functional Component */
 function Register() {
+    const [showRegister, setShowRegister] = useState('');
+    const [showVerify, setShowVerify] = useState('visually-hidden');
+    const [sendAgainLoading, setSendAgainLoading] = useState(false);
 
     /* registration state used to store data from input fields. */
     const [registration, setRegistration] = useState({
@@ -49,15 +52,14 @@ function Register() {
                 .then(response => response.json())
                 .then((response) => {
                     setLoading(false)
-                    setInvalid(true);
-                    setInvalidMessage(response.message);
-                    setRegistration({
-                        name: '',
-                        email: '',
-                        mobile: '',
-                        password: '',
-                        reenter: ''
-                    })
+                    if (response.message === 'User successfully registered.') {
+                        setShowRegister('visually-hidden');
+                        setShowVerify('')
+                    }
+                    else {
+                        setInvalid(true);
+                        setInvalidMessage(response.message);
+                    }
                 })
                 .catch(() => {
                     setLoading(false)
@@ -67,9 +69,30 @@ function Register() {
         }
     }
 
+    const handleSendAgain = () => {
+        setSendAgainLoading(true)
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/sendagain`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(registration)
+            })
+                .then(response => response.json())
+                .then((response) => {
+                    setSendAgainLoading(false)
+                    
+                })
+                .catch(() => {
+                    setSendAgainLoading(false)
+                })
+    }
+
     return (
         <div className='w-100 d-flex flex-column flex-md-row p-3 justify-content-center justify-content-md-end'>
-            <div className='col bg-white col-md-4 d-flex flex-column align-items-center py-2 justify-content-center shadow rounded'>
+            {/* Registration Form */}
+            <div className={`col bg-white ${showRegister} col-md-4 d-flex flex-column align-items-center py-2 justify-content-center shadow rounded`}>
                 <h5 className='fs-6'>Register</h5>
                 {/* Form */}
                 <form className='w-100 px-4 mt-2' onSubmit={handleSubmit}>
@@ -93,6 +116,17 @@ function Register() {
                         <span>Submit</span>
                     </button>
                 </form>
+            </div>
+
+            {/* Email Verification */}
+            <div className={`col bg-white ${showVerify} col-md-4 d-flex flex-column align-items-center py-2 px-2 px-md-4 justify-content-center shadow rounded`}>
+                <h5 className='fs-6'>Verify Email Address</h5>
+                <h6 className='small mt-4'>We have send an email to your email address</h6>
+                <input type="text" readOnly={true} className="form-control py-2 border-primary form-control-sm small shadow-none" value={registration.email} aria-label="Username" aria-describedby="input-group-right" />
+                <h6 className='small mt-2'>Please verify your account first by clicking the link send to your email address.</h6>
+                <button onClick={handleSendAgain} className='btn btn-primary my-4 d-flex justify-content-center align-items-center '>
+                {sendAgainLoading ? <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> : null}
+                <span>Send Again</span></button>
             </div>
         </div>
     )
