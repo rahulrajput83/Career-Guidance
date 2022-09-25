@@ -10,25 +10,31 @@ router.post('/login', (req, res) => {
     RegisterModel.find({ emailID: req.body.email })
         .then((data) => {
             /* If data.length greater than 1. */
-            if(data.length >= 1) {
+            if (data.length >= 1) {
                 /* If dsata[0].password === req.body.password */
-                if(data[0].password === req.body.password) {
-                    /* send response back with message and data. */
-                    res.json({message : 'Successfully Login', data: data});
+                if (data[0].password === req.body.password) {
+                    if (data[0].Verified === true) {
+                        /* send response back with message and data. */
+                        res.json({ message: 'Successfully Login', data: data });
+                    }
+                    else {
+                        /* Else send response with message. */
+                        res.json({ message: 'Email not verified !!', })
+                    }
                 }
-                else{
+                else {
                     /* Else send response with message. */
-                    res.json({message: 'Wrong password !!',})
+                    res.json({ message: 'Wrong password !!', })
                 }
             }
-            else{
+            else {
                 /* Else send response with message. */
-                res.json({message: 'User not registered.'})
+                res.json({ message: 'User not registered.' })
             }
         })
         .catch(err => {
             /* Else send response with message. */
-            res.json({message: 'err, please try again.'})
+            res.json({ message: 'err, please try again.' })
         })
 })
 
@@ -36,9 +42,9 @@ router.post('/login', (req, res) => {
 /* Delete Account Route */
 router.delete('/delete-account', (req, res) => {
     RegisterModel.findOne({ _id: req.body.id })
-    .then((data) => {
-        console.log(data);
-    })
+        .then((data) => {
+            console.log(data);
+        })
 });
 
 /* Update Career Field */
