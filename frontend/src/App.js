@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux';
 import CareenPath from './Components/CareerPath/CareerPath';
 import ZoomMeeting from './Components/ZoomMeeting/ZoomMeeting';
 import About from './Components/About/About';
+import VerifyAccount from './Components/VerifyAccount/VerifyAccount';
 
 /* Private Routing if user is not logged in then they can't access specific routes. */
 const PrivateRoutes = ({ user, children }) => {
@@ -58,6 +59,8 @@ function App() {
            <Route path='/ZoomMeeting' element={<PrivateRoutes user={user}><ZoomMeeting /></PrivateRoutes>} />
         {/* About Route */}
         <Route path='/about' element={<About />} />
+        {/* ${process.env.frontendUrl}${value._id}/email=${value.emailID} */}
+        <Route path='/verifyaccount/:id/email=:email' element={<VerifyAccount />} />
       </Routes>
      
       {/* Renders Footer Component */}

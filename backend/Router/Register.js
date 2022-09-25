@@ -208,7 +208,7 @@ router.post('/sendagain', (req, res) => {
                                 <table border="0" cellpadding="0" cellspacing="0">
                                   <tr>
                                     <td align="center" bgcolor="#1a82e2" style="border-radius: 6px;">
-                                      <a href="${process.env.frontendUrl}${value[0]._id}/email=${value[0].emailID}" target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Verify Now</a>
+                                      <a href="${process.env.frontendUrl}verifyaccount/${value[0]._id}/email=${value[0].emailID}" target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Verify Now</a>
                                     </td>
                                   </tr>
                                 </table>
@@ -223,7 +223,7 @@ router.post('/sendagain', (req, res) => {
                       <tr>
                         <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
                           <p style="margin: 0;">If that doesn't work, copy and paste the following link in your browser:</p>
-                          <p style="margin: 0;"><a href="${process.env.frontendUrl}${value[0]._id}/email=${value[0].emailID}" target="_blank">${process.env.frontendUrl}${value[0]._id}/email=${value[0].emailID}</a></p>
+                          <p style="margin: 0;"><a href="${process.env.frontendUrl}verifyaccount/${value[0]._id}/email=${value[0].emailID}" target="_blank">${process.env.frontendUrl}verifyaccount/${value[0]._id}/email=${value[0].emailID}</a></p>
                         </td>
                       </tr>
                       <!-- end copy -->
@@ -510,7 +510,7 @@ router.post('/register', (req, res) => {
                                                 <table border="0" cellpadding="0" cellspacing="0">
                                                   <tr>
                                                     <td align="center" bgcolor="#1a82e2" style="border-radius: 6px;">
-                                                      <a href="${process.env.frontendUrl}${value._id}/email=${value.emailID}" target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Verify Now</a>
+                                                      <a href="${process.env.frontendUrl}verifyaccount/${value._id}/email=${value.emailID}" target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Verify Now</a>
                                                     </td>
                                                   </tr>
                                                 </table>
@@ -525,7 +525,7 @@ router.post('/register', (req, res) => {
                                       <tr>
                                         <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
                                           <p style="margin: 0;">If that doesn't work, copy and paste the following link in your browser:</p>
-                                          <p style="margin: 0;"><a href="${process.env.frontendUrl}${value._id}/email=${value.emailID}" target="_blank">${process.env.frontendUrl}${value._id}/email=${value.emailID}</a></p>
+                                          <p style="margin: 0;"><a href="${process.env.frontendUrl}verifyaccount/${value._id}/email=${value.emailID}" target="_blank">${process.env.frontendUrl}verifyaccount/${value._id}/email=${value.emailID}</a></p>
                                         </td>
                                       </tr>
                                       <!-- end copy -->
