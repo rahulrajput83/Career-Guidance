@@ -67,7 +67,7 @@ function VerifyAccount() {
             {start ? 
             <div className='d-flex flex-column justify-content-center align-items-center'>
                 <h5 className='mb-2'>Verify Account</h5>
-                <span className='fs-6 mt-1 mb-3'>Click on below button to verify <span className='fw-bold'>{email}</span>.</span>
+                <span className='fs-6 text-center mt-1 mb-3'>Click on below button to verify <span className='fw-bold'>{email}</span>.</span>
                 <button onClick={startVerification} className='btn btn-outline-primary'>Verify Account</button>
             </div>
              : null}
