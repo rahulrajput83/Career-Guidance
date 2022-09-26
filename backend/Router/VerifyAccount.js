@@ -2,10 +2,11 @@
 const express = require('express');
 const router = express.Router();
 const RegisterModel = require('../Schema/Register');
+const cors = require('cors');
 
 
 /* Update Career Field */
-router.post('/verifyAccount', (req, res) => {
+router.post('/verifyAccount', cors(), (req, res) => {
     RegisterModel.find({ _id: req.body.id, emailID: req.body.email })
         .then((value) => {
             if (value[0].Verified === true) {
