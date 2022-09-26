@@ -16,6 +16,9 @@ function VerifyAccount() {
 
     const startVerification = useCallback(() => {
         setVerifying(true);
+        setAlreadyVerified(false);
+        setSuccessfullyVerified(false);
+        setFailed(false)
         fetch(`${process.env.REACT_APP_BACKEND_URL}/verifyAccount`, {
             method: 'POST',
             headers: {
