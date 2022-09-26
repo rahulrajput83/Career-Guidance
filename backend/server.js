@@ -7,6 +7,7 @@ const CareerDetails = require('./Router/CareerDetail');
 const Register = require('./Router/Register')
 const Login = require('./Router/Login');
 const VerifyAccount = require('./Router/VerifyAccount');
+const cors = require('cors')
 
 
 const app = express();
@@ -28,13 +29,14 @@ mongoose.connect(process.env.connectionString)
         console.log('Failed to connect to mongoDB.')
     })
 
-
+app.use(cors())
+/* 
 app.use(function (req, res, next) {
-    /* var allowedDomains = ['http://localhost:3000', '/'];
+    var allowedDomains = ['http://localhost:3000', '/'];
     var origin = req.headers.origin;
     if (allowedDomains.indexOf(origin) > -1) {
         res.setHeader('', origin);
-    } */
+    }
     res.setHeader('Access-Control-Allow-Origin', 'https://career-guidance.vercel.app')
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With,content-type, Accept');
@@ -43,7 +45,7 @@ app.use(function (req, res, next) {
     req.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With,content-type, Accept');
     next();
 });
-
+ */
 app.use('/', AskQuestion);
 app.use('/', Answers);
 app.use('/', CareerDetails);
