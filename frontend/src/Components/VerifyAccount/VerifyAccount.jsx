@@ -15,17 +15,23 @@ function VerifyAccount() {
 
 
     const startVerification = useCallback(() => {
+        const data = {
+            userId: id,
+            userEmail: email
+        }
+
+        console.log(process.env.REACT_APP_BACKEND_URL)
         setVerifying(true);
         setAlreadyVerified(false);
         setSuccessfullyVerified(false);
         setFailed(false)
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/verifyAccount`, {
-            method: 'POST',
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/verify`, {
+            method: 'PATCH',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ id: id, email: email })
+            body: JSON.stringify(data)
         })
             .then(response => response.json())
             .then((response) => {
@@ -55,7 +61,7 @@ function VerifyAccount() {
                 setFailed(true)
                 console.log(err)
             })
-    }, [id, email])
+    }, [email, id])
 
     useEffect(() => {
         startVerification();

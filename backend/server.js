@@ -7,11 +7,10 @@ const CareerDetails = require('./Router/CareerDetail');
 const Register = require('./Router/Register')
 const Login = require('./Router/Login');
 const VerifyAccount = require('./Router/VerifyAccount');
-const cors = require('cors')
+
 
 const app = express();
 
-app.use(cors())
 app.use(express.json({ limit: '50mb' }));
 
 const DEFAULT_PORT = 2800;
@@ -31,7 +30,7 @@ mongoose.connect(process.env.connectionString)
 
 
 app.use(function (req, res, next) {
-    var allowedDomains = ['http://localhost:3000', 'https://career-guidance.vercel.app'];
+    var allowedDomains = ['http://localhost:3000', 'https://career-guidance.vercel.app/'];
     var origin = req.headers.origin;
     if (allowedDomains.indexOf(origin) > -1) {
         res.setHeader('Access-Control-Allow-Origin', origin);
