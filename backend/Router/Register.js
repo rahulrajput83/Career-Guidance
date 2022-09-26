@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const RegisterModel = require('../Schema/Register')
 const sgMail = require('@sendgrid/mail');
+const cors = require('cors')
 
 sgMail.setApiKey(process.env.sendEmailApi);
 
@@ -293,7 +294,7 @@ router.post('/sendagain', (req, res) => {
     })
 })
 
-router.post('/register', (req, res) => {
+router.post('/register', cors(), (req, res) => {
     RegisterModel.find({ emailID: req.body.email })
         .then((data) => {
             if (data.length >= 1) {

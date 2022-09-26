@@ -9,9 +9,9 @@ const Login = require('./Router/Login');
 const VerifyAccount = require('./Router/VerifyAccount');
 const cors = require('cors')
 
-app.use(cors())
 const app = express();
 
+app.use(cors())
 app.use(express.json({ limit: '50mb' }));
 
 const DEFAULT_PORT = 2800;
