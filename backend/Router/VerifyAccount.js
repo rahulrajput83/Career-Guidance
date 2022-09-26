@@ -6,9 +6,9 @@ const RegisterModel = require('../Schema/Register');
 
 /* Update Career Field */
 router.post('/verifyAccount', (req, res) => {
-    RegisterModel.findOne({ _id: req.body.id })
+    RegisterModel.find({ _id: req.body.id, emailID: req.body.email })
         .then((value) => {
-            if (value.Verified === true) {
+            if (value[0].Verified === true) {
                 res.json({ message: 'Already Verified' })
             }
             else {

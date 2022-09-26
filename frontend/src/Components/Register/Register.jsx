@@ -1,5 +1,6 @@
 /* Imports */
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { Data } from './Data';
 
 /* Register Functional Component */
@@ -69,24 +70,36 @@ function Register() {
         }
     }
 
+    useEffect(() => {
+        setShowRegister('')
+        setShowVerify('visually-hidden');
+        setRegistration({
+            name: '',
+            email: '',
+            mobile: '',
+            password: '',
+            reenter: ''
+        })
+    }, [])
+
     const handleSendAgain = () => {
         setSendAgainLoading(true)
         fetch(`${process.env.REACT_APP_BACKEND_URL}/sendagain`, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(registration)
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(registration)
+        })
+            .then(response => response.json())
+            .then((response) => {
+                setSendAgainLoading(false)
+
             })
-                .then(response => response.json())
-                .then((response) => {
-                    setSendAgainLoading(false)
-                    
-                })
-                .catch(() => {
-                    setSendAgainLoading(false)
-                })
+            .catch(() => {
+                setSendAgainLoading(false)
+            })
     }
 
     return (
@@ -125,8 +138,8 @@ function Register() {
                 <input type="text" readOnly={true} className="form-control py-2 border-primary form-control-sm small shadow-none" value={registration.email} aria-label="Username" aria-describedby="input-group-right" />
                 <h6 className='small mt-2'>Please verify your account first by clicking the link send to your email address.</h6>
                 <button onClick={handleSendAgain} className='btn btn-primary my-4 d-flex justify-content-center align-items-center '>
-                {sendAgainLoading ? <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> : null}
-                <span>Send Again</span></button>
+                    {sendAgainLoading ? <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> : null}
+                    <span>Send Again</span></button>
             </div>
         </div>
     )
