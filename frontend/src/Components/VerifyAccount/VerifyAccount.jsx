@@ -1,6 +1,4 @@
 import React from 'react';
-import { useEffect } from 'react';
-import { useCallback } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import AccountStatus from './AccountStatus';
@@ -8,19 +6,20 @@ import AccountStatus from './AccountStatus';
 function VerifyAccount() {
     const { id } = useParams();
     const { email } = useParams();
+    const [start, setStart] = useState(true);
     const [verifing, setVerifying] = useState(false);
     const [alreadyVerified, setAlreadyVerified] = useState(false);
     const [successfullyVerified, setSuccessfullyVerified] = useState(false);
     const [failed, setFailed] = useState(false);
+    const data = {
+        userId: id,
+        userEmail: email
+    }
 
-
-    const startVerification = useCallback(() => {
-        const data = {
-            userId: id,
-            userEmail: email
-        }
-
-        console.log(process.env.REACT_APP_BACKEND_URL)
+    const startVerification = (e) => {
+        e.preventDefault();
+        setStart(false);
+        console.log(process.env.REACT_APP_BACKEND_URL);
         setVerifying(true);
         setAlreadyVerified(false);
         setSuccessfullyVerified(false);
@@ -47,7 +46,7 @@ function VerifyAccount() {
                     setSuccessfullyVerified(true);
                     setFailed(false);
                 }
-                else if (response.message === 'Error, Please try again...') {
+                else {
                     setVerifying(false);
                     setAlreadyVerified(false);
                     setSuccessfullyVerified(false);
@@ -61,14 +60,17 @@ function VerifyAccount() {
                 setFailed(true)
                 console.log(err)
             })
-    }, [email, id])
-
-    useEffect(() => {
-        startVerification();
-    }, [startVerification])
+    }
 
     return (
         <div className='container w-100 d-flex flex-column justify-content-center my-5 align-items-center'>
+            {start ? 
+            <div className='d-flex flex-column justify-content-center align-items-center'>
+                <h5 className='mb-2'>Verify Account</h5>
+                <span className='fs-6 mt-1 mb-3'>Click on below button to verify <span className='fw-bold'>{email}</span>.</span>
+                <button onClick={startVerification} className='btn btn-outline-primary'>Verify Account</button>
+            </div>
+             : null}
             {verifing ?
                 <div className='d-flex flex-column justify-content-center align-items-center'>
                     <span className="spinner-border text-primary" role="status" aria-hidden="true"></span>
