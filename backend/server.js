@@ -6,9 +6,10 @@ const Answers = require('./Router/Answer')
 const CareerDetails = require('./Router/CareerDetail');
 const Register = require('./Router/Register')
 const Login = require('./Router/Login');
-const VerifyAccount = require('./Router/VerifyAccount')
+const VerifyAccount = require('./Router/VerifyAccount');
+const cors = require('cors')
 
-
+app.use(cors())
 const app = express();
 
 app.use(express.json({ limit: '50mb' }));
