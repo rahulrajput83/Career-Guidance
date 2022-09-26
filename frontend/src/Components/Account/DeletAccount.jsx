@@ -7,7 +7,7 @@ function DeletAccount() {
   const user = useSelector((state) => state.userData).id;
   const handleDelete = (e) => {
     e.preventDefault();
-    fetch(`${process.env.REACT_APP_BACKEND_URL}g/delete-account`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/delete-account`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
