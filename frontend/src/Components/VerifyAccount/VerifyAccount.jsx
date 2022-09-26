@@ -19,7 +19,6 @@ function VerifyAccount() {
     const startVerification = (e) => {
         e.preventDefault();
         setStart(false);
-        console.log(process.env.REACT_APP_BACKEND_URL);
         setVerifying(true);
         setAlreadyVerified(false);
         setSuccessfullyVerified(false);

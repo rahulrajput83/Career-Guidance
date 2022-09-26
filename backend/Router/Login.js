@@ -40,12 +40,16 @@ router.post('/login', (req, res) => {
 
 
 /* Delete Account Route */
-router.delete('/delete-account', (req, res) => {
-    RegisterModel.findOne({ _id: req.body.id })
+router.post('/delete-account', (req, res) => {
+    RegisterModel.findOneAndDelete({ _id: req.body.id })
         .then((data) => {
-            console.log(data);
+            res.json({message: 'Successfully Deleted'})
+        })
+        .catch(() => {
+            res.json({message: 'Err'})
         })
 });
+
 
 /* Update Career Field */
 router.patch('/careerfield', (req, res) => {
