@@ -66,10 +66,11 @@ function Login() {
                         setInvalidMessage(response.message);
                     }
                 })
-                .catch(() => {
+                .catch((err) => {
                     setLoading(false)
                     setInvalid(true);
                     setInvalidMessage('err, please try again.')
+                    console.log(err)
                 })
         }
     }
